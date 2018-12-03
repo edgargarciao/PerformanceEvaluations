@@ -197,5 +197,24 @@ class CriterioDao {
         }
         return false;
     }    
+
+    public function listarPreguntasDirectorDocente(){
+        $query = "  SELECT  *
+                    FROM    criterio
+                    WHERE   tipoEvaluacion = 1
+                    ORDER BY id desc";
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        $array = array();
+        
+        if(isset($respuesta) && $respuesta->num_rows>0){
+            while($row = mysqli_fetch_array($respuesta)){
+                array_unshift($array, $row);
+            }
+        }
+        return ($array);
+    }
+
 }
 ?>

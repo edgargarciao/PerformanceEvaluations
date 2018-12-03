@@ -18,27 +18,6 @@ class PeriodoDao {
     }
 
 
-    public function actualizar($usuario, $password, $newPassword){
-        $query = "UPDATE usuario SET contraseña = '".$newPassword."' WHERE usuario = '".$usuario."' AND contraseña = '".$password."'";
-        $this->model->conexion();
-        $respuesta = $this->model->query($query);
-        $this->model->closeConexion();
-        if($respuesta){
-            return 0;
-        }
-        return 1;
-    }
-
-    public function eliminar($usuario){
-        $query = "DELETE FROM usuario WHERE usuario = '".$usuario."'";
-        $this->model->conexion();
-        $respuesta = $this->model->query($query);
-        $this->model->closeConexion();
-        if($respuesta){
-            return 0;
-        }
-        return 1;
-    }
 
     public function listar(){
         $query = "SELECT descripcion, fechaI, fechaF FROM periodo ORDER BY descripcion";
@@ -71,29 +50,6 @@ class PeriodoDao {
             return $period;
         }
         return null;
-    }
-
-    public function buscar($usuario){
-        $query = "SELECT * FROM usuario WHERE usuario = '".$usuario."'";
-        $this->model->conexion();
-        $respuesta = $this->model->query($query);
-        $this->model->closeConexion();
-        $json_data = array();
-
-        if(isset($respuesta) && $respuesta->num_rows>0){
-            $json_data['success'] = 0;
-
-            $row = mysqli_fetch_array($respuesta);
-            $user = array();
-            $user['usuario'] = $row['usuario'];
-            $user['contraseña'] = $row['password'];
-            $user['tipo'] = $row['tipo'];
-            $json_data['usuario'] = $user;
-        }else{
-            $json_data['success'] = 1;
-        }
-
-        return $json_data;
     }
 
 }

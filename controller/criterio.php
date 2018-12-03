@@ -134,6 +134,19 @@ class Criterio{
         echo json_encode($response);
 
     }
+
+    public function listarPreguntasDirectorDocente(){
+        $dao = new CriterioDao();
+        echo json_encode($dao->listarPreguntasDirectorDocente());
+    }  
+
+    public function guardarEvaluacionDirectorDocente($codigoDocente,$resultados,$codigoDirector){
+        $results = json_decode($resultados, true);
+
+        foreach($arr as $item) { //foreach element in $arr
+            $uses = $item['var1']; //etc
+        }
+    }
     
 }
 ?>

@@ -3,6 +3,8 @@
 var preguntasDirector = [];
 var preguntasDocente = []; 
 
+var codigoDocente = 0;
+
 
 function errorSesion() {
     var accion = document.getElementById("sesion_alert");
@@ -1832,4 +1834,103 @@ if(accion70!=null) {
     });
 
     modifyTable('dataTables-example');
+}
+
+
+
+
+
+/********************************************
+ *  PREGUNTAS EVALUACION DIRECTOR - DOCENTE
+ ********************************************/
+
+criteriosDirectorDocente = [];
+
+function cargarEvaluacionDirectorDocente(id){
+    codigoDocente = id;
+
+    $.ajax({
+        url: "../../include.php",
+        data: {solicitud: 'listPreguntasDirectorDocente'},
+        type: "post",     
+   
+        success: function (response) {
+   
+            var json = JSON.parse((response));
+
+            if (json.length != 0) {
+                var t = $('#tabla').DataTable({bSort: false});
+                //t.clear().draw();
+                for (var i = 0; i < json.length; i++) {
+                    console.log(json[i]);
+                    var criterio = json[i].nombreCriterio;
+                    var codigo = json[i].id;
+
+                    //criteriopregunta.id, criteriopregunta.nombrePregunta, criteriopregunta.estado, 
+                    //criteriopregunta.criterio, criterio.nombreCriterio
+
+                    var radio1 = "<input type=\"radio\" name=\""+codigo+"\" id=\""+codigo+"-5\" value=\"5\"></td>";
+                    var radio2 = "<input type=\"radio\" name=\""+codigo+"\" id=\""+codigo+"-4\" value=\"4\"></td>";
+                    var radio3 = "<input type=\"radio\" name=\""+codigo+"\" id=\""+codigo+"-3\" value=\"3\"></td>";
+                    var radio4 = "<input type=\"radio\" name=\""+codigo+"\" id=\""+codigo+"-2\" value=\"2\"></td>";
+                    var radio5 = "<input type=\"radio\" name=\""+codigo+"\" id=\""+codigo+"-1\" value=\"1\"></td>";
+
+                    
+                    t.row.add([criterio, radio1,radio2,radio3,radio4,radio5]).draw(false);
+                    var crit = {codigo:codigo, criterio:criterio};
+                    criteriosDirectorDocente.push(crit);
+                }
+            }else{
+                var t = $('#tabla').DataTable();
+                t.clear().draw();
+            }
+        },
+        error: function(xhr, status, error) {            
+            
+            console.log(xhr.responseText);            
+            console.log(xhr.statusText);
+            console.log(status);
+            console.log(error);
+
+        }  
+    });
+}
+
+function guardarEvaluacionDirectorDocente(){
+
+    var resultados = [];
+    var arrayLength = criteriosDirectorDocente.length;
+    for (var j = 0; j < arrayLength; j++) {
+        var value = 0;
+        if(document.getElementById(criteriosDirectorDocente[j].codigo+"-1").checked){
+            value = 1;
+        }else if(document.getElementById(criteriosDirectorDocente[j].codigo+"-2").checked){
+            value = 2;
+        }else if(document.getElementById(criteriosDirectorDocente[j].codigo+"-3").checked){
+            value = 3;
+        }else if(document.getElementById(criteriosDirectorDocente[j].codigo+"-4").checked){
+            value = 4;
+        }else if(document.getElementById(criteriosDirectorDocente[j].codigo+"-5").checked){
+            value = 5;
+        }
+        resultados.push({codigo:criteriosDirectorDocente[j].codigo, valor:value});
+    }  
+
+
+    $.ajax({
+        url: "../../include.php",
+        data: {solicitud: 'guardarEvaluacionDirectorDocente', codigoDocente:codigoDocente, resultados:resultados},
+        type: "post",     
+        success: function (response) {
+            window.location="listTeacherEvaluation.php";                  
+        },
+        error: function(xhr, status, error) {            
+            
+            console.log(xhr.responseText);            
+            console.log(xhr.statusText);
+            console.log(status);
+            console.log(error);
+
+        }  
+    });
 }

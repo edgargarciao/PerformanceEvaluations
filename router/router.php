@@ -278,6 +278,20 @@ class Router
                 $this->controllerCriterio->consultarPreguntasDocente();
             }
 
+            elseif ($_POST['solicitud'] == 'listPreguntasDirectorDocente'){        
+                $this->controllerCriterio->listarPreguntasDirectorDocente();
+            }
+
+            elseif ($_POST['solicitud'] == 'guardarEvaluacionDirectorDocente'){        
+                
+                $codigoDocente = $_POST['codigoDocente'];
+                $resultados = $_POST['resultados']; 
+                $codigoDirector = $_SESSION['director'];
+                $this->controllerCriterio->guardarEvaluacionDirectorDocente();
+            }
+            
+            
+
             
 
             
