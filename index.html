@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Performance Evaluations - Inicio de Sesión</title>
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="application-name" content="Performance Evaluations" lang="es">
+	<meta name="description" content="Aplicacion Web para Medir el Desempeño y Clima Organizacional de la Universidad Francisco de Paula Santander - Cúcuta, Norte de Santander"/>
+	<meta name="Author" content="GIDIS"  lang="es">
+	<meta name="Contributors" content="Lizeth Rios Epalza - Eismar Johann Paredes Peña" lang="es">
+	<meta name="Aditional-Contributors" content="Derly Zuley Angel Medina - José David Castro García" lang="es">
+	<meta name="keywords" content="evaluacion, director, pares, docente, ingenieria, de sistemas, ufps, universidad, francisco, de paula, santander, cucuta, norte de santander, colombia"/>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!-- Favicon -->
+	<link rel='Shortcut icon' type="image/x-icon" href="assets/icons/favicon.ico">
+	<!-- Web Fonts css-->
+	<link rel="stylesheet" type="text/css" href="assets/css/login.css">
+    <!-- Font Awesome v5.0.13 -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+          crossorigin="anonymous">
+    <!-- Google fonts = Roboto -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!-- Bootstrap css v4.1.1 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+          crossorigin="anonymous">
+</head>
+<body>
+<!--Contenido-->
+	<div class="login-box">
+		<img src="assets/imgs/logo-ufps-horizontal.png" class="bannerImg">
+        <p class="login-box-msg">Ingresa tus datos para iniciar sesión</p>
+        <!--Formulario de Login-->
+		<form id="login" action="include.php" method="post">
+            <fieldset>
+                <div class="row align-items-center no-gutters">
+                    <div class="form-group has-feedback" style="height: 38px">
+                        <div class="cua-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="height: 38px"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" name="user" placeholder="Código" maxlength="7" value required="required">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset style="padding-top: 10px">
+                <div class="row align-items-center no-gutters">
+                    <div class="form-group has-feedback" style="height: 38px">
+                        <div class="cua-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="height: 38px"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control" name="password" placeholder="Contraseña" maxlength="30" value required="required">
+                        </div>
+                        </div>
+                    </div>
+            </fieldset>
+            <!-- Alerta para inicio de Sesión -->
+            <div id="sesion_alert">
+                <!--
+                <div class="alert alert-danger" style="color: #000000bf "role="alert">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    Usuario o contraseña invalidos
+                </div>
+                -->
+            </div>
+            <div class="col-xs-12 center-block" style="padding-top: 10px">
+                <input type="hidden" name="solicitud" value="login">
+                <button type="submit" class="btn btn-danger btn-block btn-flat" value required= "required">Iniciar Sesión</button>
+            </div>
+        </form>
+        <!-- Enlace del modal-->
+        <div class="recuperar-t">
+            <a href="#" class="text-danger" data-toggle="modal" data-target=".myModal">¿Olvidaste tu contraseña?</a>
+        </div>
+        <!--Formulario de Restablecimiento-->
+        <form id="reset" action="include.php" method="post" autocomplete="off">
+            <!-- Referencia del modal -->
+            <div class="modal fade myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header" style="display: block">
+                            <p class="modal-tittle">¿Olvidaste tu contraseña?</p>
+                        </div>
+                        <div class="modal-body">
+                            <label style="text-align: justify;padding-top: 0px;" class="login-box-msg">Para restablecer tu contraseña, ingresa tu dirección de correo electrónico. Es posible que tengas que consultar tu carpeta de spam o desbloquear la dirección no-reply@ufps.edu.co.</label>
+                            <div class="form-group has-feedback">
+                                <br>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-envelope"></i></span>
+                                    </div>
+                                    <input type="email" class="form-control" name="correo" placeholder="Correo electrónico" maxlength="100" value required="required">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 center-block">
+                                <input type="hidden" name="solicitud" value="reset">
+                                <button type="submit" class="btn btn-danger btn-block btn-flat" value required= "required">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="pie-t">
+        <footer>
+            <p style="margin-bottom: 0px" >Gidis &copy; Todos los derechos reservados.</p>
+        </footer>
+    </div>
+    <!-- Jquery v1.11.2 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/jquery-1.11.2.min.js"><\/script>')</script>
+    <!-- Jquery v3.3.1 -->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- Ajax v1.14.3-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+    <!-- Bootstrap js v4.1.1 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+    <!-- Main -->
+    <script src="assets/js/director.js"></script>
+</body>
+</html>
