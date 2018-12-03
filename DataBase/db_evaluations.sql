@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 19-06-2018 a las 19:56:42
--- Versión del servidor: 10.1.30-MariaDB
--- Versión de PHP: 7.2.1
+-- Host: localhost:3306
+-- Generation Time: Dec 03, 2018 at 09:58 AM
+-- Server version: 5.7.24-0ubuntu0.18.04.1
+-- PHP Version: 7.2.10-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `db_evaluations`
+-- Database: `db_evaluations`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `asignatura`
+-- Table structure for table `asignatura`
 --
 
 CREATE TABLE `asignatura` (
