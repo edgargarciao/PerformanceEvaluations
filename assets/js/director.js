@@ -209,7 +209,9 @@ if(accion5!=null) {
             var button1 = document.createElement("BUTTON");
             button1.setAttribute("class","btn btn-danger");
             //button1.setAttribute("type","submit");
-            button1.setAttribute("onclick","actualizarDocente("+json[i].codigo+")");
+            
+
+            button1.setAttribute("onclick","actualizarDocente(\""+json[i].codigo+"\")");
 
             var i1 = document.createElement("i");
             i1.setAttribute("class","zmdi zmdi-floppy");
