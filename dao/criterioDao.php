@@ -42,6 +42,28 @@ class CriterioDao {
         $query = "  SELECT  criteriopregunta.id, criteriopregunta.nombrePregunta, criteriopregunta.estado, criteriopregunta.criterio, criterio.nombreCriterio
                     FROM    criteriopregunta
                     INNER JOIN criterio ON criterio.id = criteriopregunta.criterio
+                    WHERE criterio.tipoEvaluacion = 4
+                    ORDER BY criteriopregunta.id desc";
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        $array = array();
+        
+        if(isset($respuesta) && $respuesta->num_rows>0){
+            while($row = mysqli_fetch_array($respuesta)){
+
+
+                array_unshift($array, $row);
+            }
+        }
+        return ($array);
+    }
+
+    public function listarPreguntasDocente(){
+        $query = "  SELECT  criteriopregunta.id, criteriopregunta.nombrePregunta, criteriopregunta.estado, criteriopregunta.criterio, criterio.nombreCriterio
+                    FROM    criteriopregunta
+                    INNER JOIN criterio ON criterio.id = criteriopregunta.criterio
+                    WHERE criterio.tipoEvaluacion = 3
                     ORDER BY criteriopregunta.id desc";
         $this->model->conexion();
         $respuesta = $this->model->query($query);
@@ -62,6 +84,24 @@ class CriterioDao {
         $query = "  SELECT      criterio.id, nombreCriterio
                     FROM        criterio
                     WHERE       criterio.tipoEvaluacion = 4
+                    ORDER BY    criterio.id     desc";
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        $array = array();
+
+        if(isset($respuesta) && $respuesta->num_rows>0){
+            while($row = mysqli_fetch_array($respuesta)){
+                array_unshift($array, $row);
+            }
+        }
+        return ($array);
+    }
+
+    public function consultarPreguntasDocente(){
+        $query = "  SELECT      criterio.id, nombreCriterio
+                    FROM        criterio
+                    WHERE       criterio.tipoEvaluacion = 3
                     ORDER BY    criterio.id     desc";
         $this->model->conexion();
         $respuesta = $this->model->query($query);
@@ -137,6 +177,25 @@ class CriterioDao {
         return 0;
         }
         return 1;
+    }
+
+    public function esPreguntaDirector($criterio){
+        $query = "  SELECT      *
+        FROM        criterio
+        WHERE       criterio.tipoEvaluacion = 4
+        AND         criterio.id     = $criterio 
+        ORDER BY    criterio.id     desc";
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        $array = array();
+
+        if(isset($respuesta) && $respuesta->num_rows>0){
+            while($row = mysqli_fetch_array($respuesta)){
+                return true;
             }
+        }
+        return false;
+    }    
 }
 ?>

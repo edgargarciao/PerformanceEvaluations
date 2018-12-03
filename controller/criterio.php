@@ -28,9 +28,19 @@ class Criterio{
         echo json_encode($dao->listarPreguntasDirector());
     }    
 
+    public function listarPreguntasDocente(){
+        $dao = new CriterioDao();
+        echo json_encode($dao->listarPreguntasDocente());
+    }    
+
     public function consultarPreguntasDirector(){
         $dao = new CriterioDao();
         echo json_encode($dao->consultarPreguntasDirector());
+    }
+
+    public function consultarPreguntasDocente(){
+        $dao = new CriterioDao();
+        echo json_encode($dao->consultarPreguntasDocente());
     }
     
     public function habilitarCriterio($estado,$codigo){
@@ -93,9 +103,14 @@ class Criterio{
 
         $respuesta = $dao->insertarPreguntaDirector($pregunta,$criterio);
         if ($respuesta == 0) {
-                                             
-            header('Location: views/director/editSelfEvaluation.php');                                             
-            echo '<script> alert("Creacion Exitosa")</script>';
+            if($dao->esPreguntaDirector($criterio)){
+                header('Location: views/director/editSelfEvaluation.php');                                             
+                echo '<script> alert("Creacion Exitosa")</script>';
+            }else{
+                header('Location: views/director/editSelfEvaluationTeacher.php');                                             
+                echo '<script> alert("Creacion Exitosa")</script>';
+            }                                 
+            
         }else {
             echo '<script> alert("Creacion Fallida")</script>';
         }

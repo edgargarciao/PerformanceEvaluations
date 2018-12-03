@@ -1,7 +1,7 @@
 
 
 var preguntasDirector = [];
-var preguntasDocente = [];
+var preguntasDocente = []; 
 
 
 function errorSesion() {
@@ -1170,7 +1170,7 @@ function actualizarCriterio(codigo){
 
 
 /*************************************************
- *  AUTOEVALACION DOCENTE
+ *  AUTOEVALACION DIRECTOR
  ************************************************/
 
 var accion60 = document.querySelector("#administrar");
@@ -1411,7 +1411,6 @@ if(accion60!=null) {
             }else{
                 var t = $('#dataTables-example').DataTable();
                 t.clear().draw();
-                alert("Ha ocurrido un error al listar las preguntas");
             }
         },
         error: function(xhr, status, error) {            
@@ -1537,5 +1536,298 @@ function cargarPreguntasDirector(){
 }
 
 function cargarPreguntasDocente(){
+    $.ajax({
+        url:"../../include.php",
+        data:{solicitud:'consultarPreguntasDocente'},
+        type:"post",
+        dataType:"json",
+ 
+        success:function(response){
+        
+            var json = JSON.parse(JSON.stringify(response));
+            if (json.length != 0) {
+                for (var i = 0; i < json.length; i++) {
+                    var criterio = json[i].nombreCriterio;
+                    var Codigo = json[i].id;
+                    
 
+                    var preguntaDirector = {codigo:Codigo, criterio:criterio};
+                    preguntasDirector.push(preguntaDirector);
+                
+                    var option = document.createElement("OPTION");
+                    option.setAttribute("value",Codigo); 
+        
+                    var textooption = document.createTextNode(criterio);       
+                    option.appendChild(textooption);
+                    var select = document.getElementById("criterioOptions");
+                    select.appendChild(option);
+
+                    //var preguntasDocente = [];
+
+                }
+            }
+        },
+        error: function(xhr, status, error) {            
+            var err = eval("(" + xhr.responseText + ")");
+            alert(xhr.responseText);
+
+        }      
+    });
+}
+
+/*************************************************
+ *  AUTOEVALACION DOCENTE
+ ************************************************/
+
+var accion70 = document.querySelector("#administrarT");
+if(accion70!=null) {
+    
+    //cargarPreguntasDirector();
+    cargarPreguntasDocente();
+
+    $.ajax({
+        url: "../../include.php",
+        data: {solicitud: 'listPreguntasDocente'},
+        type: "post",     
+   
+        success: function (response) {
+   
+            var json = JSON.parse((response));
+            var respuesta = "";
+            var respuesta2 = "";
+            var respuesta3 = "";
+            if (json.length != 0) {
+                var t = $('#dataTables-example').DataTable();
+                t.clear().draw();
+                for (var i = 0; i < json.length; i++) {
+                    console.log(json[i]);
+                    var criterio = json[i].nombreCriterio;
+                    var Nombre = json[i].nombrePregunta;
+                    var Codigo = json[i].id;
+                    var tipoCriterioId = json[i].criterio;
+
+                    respuesta3 += ' <a class="btn btn-default" data-toggle="modal" data-target="#myModal'+Codigo+'"> ';
+                    respuesta3 += 'Editar';
+                    respuesta3 += '</a> \n' ;
+                    respuesta3 += '<button id="hab'+Codigo+'" class="btn btn-success '+((json[i].estado == "Activo")?"disabled":"")+' " onclick="habilitarPreguntaDirector(\''+Codigo+'\')">';
+                    respuesta3 += 'Habilitar';
+                    respuesta3 += '</button>  \n';
+                    respuesta3 += '<button id="deshab'+Codigo+'" class="btn btn-danger '+((json[i].estado == "Inactivo")?"disabled":"")+'" onclick="desHabilitarPreguntaDirector(\''+Codigo+'\')">';
+                    respuesta3 += 'Deshabilitar';
+                    respuesta3 += '</button>';
+                    
+                    t.row.add([criterio, Nombre, respuesta3]).draw(false);
+                    respuesta2 = "";
+                    respuesta3 = "";
+                    respuesta = "";
+
+                    var modals = document.getElementById("modals");
+
+
+            var div1 = document.createElement("DIV");
+            div1.setAttribute("id","myModal"+Codigo);
+            div1.setAttribute("class","modal fade myModal");
+            div1.setAttribute("tabindex","-1");
+            div1.setAttribute("role","dialog");
+            div1.setAttribute("aria-labelledby","myModalLabel");
+            div1.setAttribute("aria-hidden","true");
+
+
+            var div2 = document.createElement("DIV");
+            div2.setAttribute("class","modal-dialog modal-dialog-centered");
+            
+            var div3 = document.createElement("DIV");
+            div3.setAttribute("class","modal-content");
+
+            var div4 = document.createElement("DIV");
+            div4.setAttribute("class","modal-header");
+            div4.setAttribute("style","display: block");
+            
+            div3.appendChild(div4);
+
+            var p1 = document.createElement("P");
+            p1.setAttribute("class","modal-tittle");
+            p1.setAttribute("style","display: block");
+
+            var textop1 = document.createTextNode("EDITAR CAMPOS");       
+            p1.appendChild(textop1);
+
+            div4.appendChild(p1);
+
+            var div5 = document.createElement("DIV");
+            div5.setAttribute("class","modal-body");                   
+
+            var label1 = document.createElement("LABEL");
+            label1.setAttribute("style","text-align: justify;padding-top: 0px;");
+            label1.setAttribute("class","login-box-msg");
+            var textolabel1 = document.createTextNode("Llena los campos a editar la información requerida");       
+            label1.appendChild(textolabel1);
+
+            div5.appendChild(label1);
+
+            div5.appendChild(document.createElement("BR"));
+            div5.appendChild(document.createElement("BR"));
+            div5.appendChild(document.createElement("BR"));
+
+            var div6 = document.createElement("DIV");
+            div6.setAttribute("class","row"); 
+            
+            var div7 = document.createElement("DIV");
+            div7.setAttribute("class","col-xs-12 col-sm-8 col-sm-offset-2"); 
+
+            var div8 = document.createElement("DIV");
+            div8.setAttribute("class","group-material"); 
+
+            var input1 = document.createElement("INPUT");
+            input1.setAttribute("class","material-control tooltips-general"); 
+            input1.setAttribute("id","txtTipoEvaluacionx"+Codigo); 
+            input1.setAttribute("type","hidden"); 
+            input1.setAttribute("name","nombrex"); 
+            input1.setAttribute("placeholder","Tipo de evaluacion"); 
+            input1.setAttribute("data-toggle","tooltip");
+            input1.setAttribute("value",Nombre);
+            
+            div8.appendChild(input1);
+
+            var span1 = document.createElement("SPAN");
+            span1.setAttribute("class","highlight"); 
+
+            div8.appendChild(span1);
+
+            var span2 = document.createElement("SPAN");
+            span2.setAttribute("class","bar"); 
+
+            div8.appendChild(span2);
+
+            var label2 = document.createElement("LABEL");
+            label2.setAttribute("style","text-align: justify;padding-top: 0px;");
+            label2.setAttribute("class","login-box-msg");
+            var textolabel2 = document.createTextNode("Tipo de evaluacion");       
+            label2.appendChild(textolabel2);
+
+            div8.appendChild(label2);
+
+            var div50 = document.createElement("DIV");
+            div50.setAttribute("class","group-material"); 
+
+            var select = document.createElement("SELECT");
+            select.setAttribute("class","form-control"); 
+            select.setAttribute("name","txtCriterio"); 
+            select.setAttribute("id","txtCriterio"+Codigo); 
+
+
+            var arrayLength = preguntasDirector.length;
+            for (var j = 0; j < arrayLength; j++) {
+ 
+                var option = document.createElement("OPTION");
+                option.setAttribute("value",preguntasDirector[j].codigo); 
+    
+                var textooption = document.createTextNode(preguntasDirector[j].criterio);       
+                option.appendChild(textooption);
+    
+                select.appendChild(option);
+            }
+
+            div50.appendChild(select);
+
+            
+
+            var div12 = document.createElement("DIV");
+            div12.setAttribute("class","group-material"); 
+
+            var input2 = document.createElement("INPUT");
+            input2.setAttribute("class","material-control tooltips-general"); 
+            input2.setAttribute("id","txtnombre"+Codigo); 
+            input2.setAttribute("type","text"); 
+            input2.setAttribute("name","nombre");             
+            input2.setAttribute("data-toggle","tooltip");
+            input2.setAttribute("value",Nombre);
+            
+            div12.appendChild(input2);
+
+            var span3 = document.createElement("SPAN");
+            span3.setAttribute("class","highlight"); 
+
+            div12.appendChild(span3);
+
+            var span4 = document.createElement("SPAN");
+            span4.setAttribute("class","bar"); 
+
+            div12.appendChild(span4);
+
+            var label3 = document.createElement("LABEL");
+            label3.setAttribute("style","text-align: justify;padding-top: 0px;");
+            label3.setAttribute("class","login-box-msg");
+            var textolabel3 = document.createTextNode("Nombre del criterio");       
+            label3.appendChild(textolabel3);
+
+            div12.appendChild(label3);
+
+            div7.appendChild(div12);
+
+            div7.appendChild(div8);
+            div7.appendChild(div50);
+
+            var p2 = document.createElement("P");
+            p2.setAttribute("class","text-center");
+
+            var button1 = document.createElement("BUTTON");
+            button1.setAttribute("class","btn btn-danger");
+            //button1.setAttribute("type","submit");
+            button1.setAttribute("onclick","actualizarPreguntaDirector("+Codigo+")");
+
+            var i1 = document.createElement("i");
+            i1.setAttribute("class","zmdi zmdi-floppy");
+
+            button1.appendChild(i1);
+
+            var i1 = document.createElement("i");
+            i1.setAttribute("class","zmdi zmdi-floppy");
+
+
+            var textobutton1 = document.createTextNode("Guardar");       
+            button1.appendChild(textobutton1);
+
+            p2.appendChild(button1);
+
+            var inputhidden = document.createElement("INPUT");
+            inputhidden.setAttribute("type","hidden");             
+            inputhidden.setAttribute("name","solicitud");
+            inputhidden.setAttribute("value","updatePreguntaDirector");              
+            
+            p2.appendChild(inputhidden);
+
+            div7.appendChild(p2);
+
+            div6.appendChild(div7);
+
+            div5.appendChild(div6);
+
+            div3.appendChild(div5);
+
+            div2.appendChild(div3);
+
+            div1.appendChild(div2);
+
+
+            modals.appendChild(div1);
+
+            document.getElementById("txtCriterio"+Codigo).selectedIndex = $("#txtCriterio"+ Codigo+" > option:contains("+criterio+")").index() ; 
+                }
+            }else{
+                var t = $('#dataTables-example').DataTable();
+                t.clear().draw();
+            }
+        },
+        error: function(xhr, status, error) {            
+            //var err = eval("(" + xhr.responseText + ")");
+            console.log(xhr.responseText);
+                    console.log(xhr.statusText);
+                    console.log(status);
+                    console.log(error);
+
+        }  
+    });
+
+    modifyTable('dataTables-example');
 }

@@ -247,6 +247,10 @@ class Router
             elseif ($_POST['solicitud'] == 'listPreguntasDirector'){           
                 $this->controllerCriterio->listarPreguntasDirector();
             }
+
+            elseif ($_POST['solicitud'] == 'listPreguntasDocente'){           
+                $this->controllerCriterio->listarPreguntasDocente();
+            }
             
             elseif ($_POST['solicitud'] == 'registryPreguntaDirector'){   
                 
@@ -270,7 +274,9 @@ class Router
                 $this->controllerCriterio->actualizarDatosPreguntaDirector($criterio,$codigo,$nombre);
             }
             
-            
+            elseif ($_POST['solicitud'] == 'consultarPreguntasDocente'){        
+                $this->controllerCriterio->consultarPreguntasDocente();
+            }
 
             
 

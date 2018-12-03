@@ -31,7 +31,8 @@
                         <div class="dropdown-menu-button"><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i>&nbsp;&nbsp;Evaluaciones<i class="zmdi zmdi-chevron-down pull-right zmdi-hc-fw"></i></div>
                         <ul class="list-unstyled">
                             <li><a href="editEvaluations.php" style="color: black"><i class="zmdi zmdi-assignment-alert zmdi-hc-fw"></i>&nbsp;&nbsp;Editar Evaluacion</a></li>
-                            <li><a href="editSelfEvaluation.php" style="color: black"><i class="zmdi zmdi-assignment-account zmdi-hc-fw"></i>&nbsp;&nbsp;Editar Auto-Evaluacion</a></li>
+                            <li><a href="editSelfEvaluation.php" style="color: black"><i class="zmdi zmdi-assignment-account zmdi-hc-fw"></i>&nbsp;&nbsp;Editar Auto-Evaluacion Director</a></li>
+                            <li><a href="editSelfEvaluationTeacher.php" style="color: black"><i class="zmdi zmdi-assignment-account zmdi-hc-fw"></i>&nbsp;&nbsp;Editar Auto-Evaluacion Docente</a></li>
                             <li><a href="listTeacherEvaluation.php" style="color: black"><i class="zmdi zmdi-accounts zmdi-hc-fw"></i>&nbsp;&nbsp;Realizar Evaluación a Docentes</a></li>
                             <li><a href="listPairEvaluation.php" style="color: black"><i class="zmdi zmdi-accounts-alt zmdi-hc-fw"></i>&nbsp;&nbsp;Realizar Evaluación a Pares</a></li>
                             <li><a href="selfEvaluation.php" style="color: black"><i class="zmdi zmdi-account zmdi-hc-fw"></i>&nbsp;&nbsp;Realizar Auto-evaluación</a></li>

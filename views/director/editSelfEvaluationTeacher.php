@@ -52,7 +52,7 @@ if (!isset($_SESSION['director'])){
                         <img src="../../assets/imgs/progress.png" alt="view" class="img-responsive center-box" style="max-width: 110px;">
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
-                        En esta sección puede el director editar el contenido de las preguntas de la auto-evaluación del director, asi como deshabilitar/habilitar algunas de estás preguntas y agregar nuevas preguntas.
+                        En esta sección puede el director editar el contenido de las preguntas de la auto-evaluación del docente, asi como deshabilitar/habilitar algunas de estás preguntas y agregar nuevas preguntas.
                     </div>
                     <div class="container-fluid contai-espacio">
                         <div class="container-flat-form">
@@ -63,7 +63,7 @@ if (!isset($_SESSION['director'])){
                                     <form>
                                     <div class="col-xs-12">
                                         <div class="table-responsive">
-                                            <div id = "administrar" method="post">
+                                            <div id = "administrarT" method="post">
                                                 
                                                 <table id="dataTables-example" class="table table-striped text-center" style="border: #8080802e 1px solid">
                                                         <thead>
@@ -133,7 +133,7 @@ if (!isset($_SESSION['director'])){
                                         </select>                                      
                                     </div>
                                     <div class="group-material">
-                                        <input type="text" name="pregunta" class="material-control tooltips-general" placeholder="Nueva pregunta" required="" maxlength="50" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" data-toggle="tooltip">
+                                        <input type="text" name="pregunta" class="material-control tooltips-general" placeholder="Nueva pregunta" required="" data-toggle="tooltip">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>Nombre de la pregunta</label>
