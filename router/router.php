@@ -308,11 +308,18 @@ class Router
                 $this->controllerDirector->listarDocentesDocente();
             }
 
-            elseif($_POST['solicitud'] == 'listarDocentesDocente'){
-                
+            elseif($_POST['solicitud'] == 'listPreguntasAutoDirector'){
+                $this->controllerCriterio->listarPreguntasAutoDirector();
             }
-            	
+            elseif($_POST['solicitud'] == 'guardarAutoEvaluacionDirector'){
+                $resultados = ($_POST['resultados']);                 
+                $codigoDirector = $_SESSION['director'];
+                $this->controllerDirector->evaluacionPar($resultados,4);
+            }
 
+            
+            	
+            
 
             else {
                 echo '<script> alert("No encontro la solicitud")</script>';

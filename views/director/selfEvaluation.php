@@ -128,7 +128,7 @@ if (!isset($_SESSION['director'])){
                                         <form id="auto_director" action="../../include.php" method="post" autocomplete="off">
                                             <div class="table-responsive">
                                                 <h3 class="text-center all-tittles">Tabla de auto-evaluación</h3>
-                                                <table class="table table-hover text-center" >
+                                                <table id = "tablatt" class="table table-hover text-center" >
                                                     <thead>
                                                     <tr>
                                                         <th class="text-center">No.</th>
@@ -140,159 +140,17 @@ if (!isset($_SESSION['director'])){
                                                         <th class="text-center">Deficiente</th>
                                                     </tr>
                                                     </thead>
-                                                    <tbody>
+                                                    <tbody id="tbo">
                                                     <tr class="text-center">
-                                                        <td>   </td>
-                                                        <td style="font-weight: bold">Compromiso institucional</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-weight: bold">1. </td>
-                                                        <td class="text-justify">Participa en los diversos comités y equipos de trabajo que desarrollan acciones de mejora de los procesos pedagógicos.</td>
-                                                        <td><input type="radio" name="a" value="5"></td>
-                                                        <td><input type="radio" name="a" value="4"></td>
-                                                        <td><input type="radio" name="a" value="3"></td>
-                                                        <td><input type="radio" name="a" value="2"></td>
-                                                        <td><input type="radio" name="a" value="1"></td>
-                                                        <td>    </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-weight: bold">2. </td>
-                                                        <td class="text-justify">Participa activamente en las diversas actividades realizadas por el programa.</td>
-                                                        <td><input type="radio" name="b" value="5"></td>
-                                                        <td><input type="radio" name="b" value="4"></td>
-                                                        <td><input type="radio" name="b" value="3"></td>
-                                                        <td><input type="radio" name="b" value="2"></td>
-                                                        <td><input type="radio" name="b" value="1"></td>
-                                                        <td>    </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-weight: bold">3. </td>
-                                                        <td class="text-justify">Cumple de manera puntual y eficaz con sus responsabilidades dentro de las fechas establecidas (Subida de notas a la plataforma, realización de las evaluaciones, etc.) </td>
-                                                        <td><input type="radio" name="c" value="5"></td>
-                                                        <td><input type="radio" name="c" value="4"></td>
-                                                        <td><input type="radio" name="c" value="3"></td>
-                                                        <td><input type="radio" name="c" value="2"></td>
-                                                        <td><input type="radio" name="c" value="1"></td>
-                                                        <td>    </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-weight: bold">4. </td>
-                                                        <td class="text-justify">Vela por el buen mantenimiento de las instalaciones del departamento.</td>
-                                                        <td><input type="radio" name="d" value="5"></td>
-                                                        <td><input type="radio" name="d" value="4"></td>
-                                                        <td><input type="radio" name="d" value="3"></td>
-                                                        <td><input type="radio" name="d" value="2"></td>
-                                                        <td><input type="radio" name="d" value="1"></td>
-                                                        <td>    </td>
-                                                    </tr>
-                                                    <tr class="text-center">
-                                                        <td>   </td>
-                                                        <td style="font-weight: bold">Cumplimiento de tutorias</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-weight: bold">5. </td>
-                                                        <td class="text-justify">Permanece en su puesto de trabajo durante el horario de asesoría para estudiantes.</td>
-                                                        <td><input type="radio" name="e" value="5"></td>
-                                                        <td><input type="radio" name="e" value="4"></td>
-                                                        <td><input type="radio" name="e" value="3"></td>
-                                                        <td><input type="radio" name="e" value="2"></td>
-                                                        <td><input type="radio" name="e" value="1"></td>
-                                                        <td>    </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-weight: bold">6. </td>
-                                                        <td class="text-justify">Lleva control de asistencia de los estudiantes a las asesorías mediante las planillas institucionales establecidas.</td>
-                                                        <td><input type="radio" name="f" value="5"></td>
-                                                        <td><input type="radio" name="f" value="4"></td>
-                                                        <td><input type="radio" name="f" value="3"></td>
-                                                        <td><input type="radio" name="f" value="2"></td>
-                                                        <td><input type="radio" name="f" value="1"></td>
-                                                        <td>    </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-weight: bold">7. </td>
-                                                        <td class="text-justify">Tiene una actitud amable y respetuosa hacia los estudiantes que asisten a las asesorías. </td>
-                                                        <td><input type="radio" name="g" value="5"></td>
-                                                        <td><input type="radio" name="g" value="4"></td>
-                                                        <td><input type="radio" name="g" value="3"></td>
-                                                        <td><input type="radio" name="g" value="2"></td>
-                                                        <td><input type="radio" name="g" value="1"></td>
-                                                        <td>    </td>
-                                                    </tr>
 
-                                                    <tr class="text-center">
-                                                        <td>   </td>
-                                                        <td style="font-weight: bold">Asistencia a clases</td>
                                                     </tr>
-
-                                                    <tr>
-                                                        <td style="font-weight: bold">8. </td>
-                                                        <td class="text-justify">Asiste puntualmente a clases.</td>
-                                                        <td><input type="radio" name="h" value="5"></td>
-                                                        <td><input type="radio" name="h" value="4"></td>
-                                                        <td><input type="radio" name="h" value="3"></td>
-                                                        <td><input type="radio" name="h" value="2"></td>
-                                                        <td><input type="radio" name="h" value="1"></td>
-                                                        <td>    </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-weight: bold">9. </td>
-                                                        <td class="text-justify">Organiza su trabajo académico y prepara sus clases según la planificación establecida.</td>
-                                                        <td><input type="radio" name="i" value="5"></td>
-                                                        <td><input type="radio" name="i" value="4"></td>
-                                                        <td><input type="radio" name="i" value="3"></td>
-                                                        <td><input type="radio" name="i" value="2"></td>
-                                                        <td><input type="radio" name="i" value="1"></td>
-                                                        <td>    </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-weight: bold">10. </td>
-                                                        <td class="text-justify">Utiliza herramientas Tic como apoyo para el proceso académico de los estudiantes.</td>
-                                                        <td><input type="radio" name="j" value="5"></td>
-                                                        <td><input type="radio" name="j" value="4"></td>
-                                                        <td><input type="radio" name="j" value="3"></td>
-                                                        <td><input type="radio" name="j" value="2"></td>
-                                                        <td><input type="radio" name="j" value="1"></td>
-                                                        <td>    </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-weight: bold">11. </td>
-                                                        <td class="text-justify">Realiza con sus estudiantes proyectos aplicados de aprendizaje en el semestre académico . </td>
-                                                        <td><input type="radio" name="k" value="5"></td>
-                                                        <td><input type="radio" name="k" value="4"></td>
-                                                        <td><input type="radio" name="k" value="3"></td>
-                                                        <td><input type="radio" name="k" value="2"></td>
-                                                        <td><input type="radio" name="k" value="1"></td>
-                                                    </tr>
-
-                                                      <tr class="text-center">
-                                                        <td>   </td>
-                                                        <td style="font-weight: bold">Cumplimiento del Syllabus</td>
-                                                    </tr>
-
-                                                      <tr class="text-center">
-                                                        <td>   </td>
-                                                        <td style="font-weight: bold">Liderazgo</td>
-                                                    </tr>
-
-
-                                                      <tr class="text-center">
-                                                        <td>   </td>
-                                                        <td style="font-weight: bold">Responsabilidad</td>
-                                                    </tr>
-
-                                                      <tr class="text-center">
-                                                        <td>   </td>
-                                                        <td style="font-weight: bold">Resolucion de Conflictos</td>
-                                                    </tr>
+                                                   
 
                                                 
                                                     </tbody>
                                                 </table>
                                                 <p class="text-center">
-                                                    <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i>&nbsp;&nbsp;Guardar</button>
-                                                    <!-- Router -->
-                                                    <input type="hidden" name="solicitud" value="selfDir">
+                                                    <a class="btn btn-danger" onclick="guardarAutoEvaluacionDirector()"><i class="zmdi zmdi-floppy" onclick="guardarAutoEvaluacionDirector()"></i> &nbsp;&nbsp; Guardar</a>
                                                 </p>
                                             </div>
                                     </div>

@@ -157,7 +157,7 @@ class Director{
             if ($evaluacionD == 0) {
                 if($tipoevaluacion == 1){
                     header('Location: views/director/listTeacherEvaluation.php');
-                }else if($tipoevaluacion == 2){
+                }elseif($tipoevaluacion == 2){
                     header('Location: views/director/listPairEvaluation.php');
                 }
                 echo '<script> alert("Evaluacion Exitoso")</script>';
@@ -183,32 +183,25 @@ class Director{
         return $respuesta;
     }
 
-    public function evaluacionPar($codigo, $a, $b, $c, $d, $e, $f, $g, $h){
-        $numItem = 8;
+    public function evaluacionPar($resultados,$tipoevaluacion){
+        $numItem = count($resultados);
         $valorPorcentual = 100/$numItem;
         $valorItem =$valorPorcentual/10;
-        $resultado = $a*$valorItem+$b*$valorItem+$c*$valorItem+$d*$valorItem+$e*$valorItem+$f*$valorItem+$g*$valorItem+$h*$valorItem;
+        $resultado = 0;
+        foreach($resultados as $item) { //foreach element in $arr
+            $resultado = $resultado + ($item['valor'] * $valorItem);
+        }
 
         $daoP = new PeriodoDao();
         $buscar_periodo = $daoP->buscarActual();
         $id_periodo = $buscar_periodo['id'];
 
-        $dtoE = new EvaluacionDto($id_periodo, $resultado, "Ninguna", 2);
+        $dtoE = new EvaluacionDto($id_periodo, $resultado, "Ninguna", $tipoevaluacion);
         $daoE = new EvaluacionDao();
 
         $respuesta = $daoE->insertar($dtoE);
         if ($respuesta == 0) {
-            $buscar_id_evaluation = $daoE->buscarUltimo();
-            $id_evaluation = $buscar_id_evaluation['id'];
-
-            echo '<script> alert("Creacion Exitosa")</script>';
-            $evaluacionD = $this->crearEvaluacionDocente($codigo, $id_evaluation);
-            if ($evaluacionD == 0) {
-                header('Location: views/director/listPairEvaluation.php');
-                echo '<script> alert("Evaluacion Exitoso")</script>';
-            } else {
-                echo '<script> alert("Evaluacion Fallido")</script>';
-            }
+            echo '<script> alert("Evaluacion Exitoso")</script>';
         }else {
             echo '<script> alert("Creacion Fallida")</script>';
         }

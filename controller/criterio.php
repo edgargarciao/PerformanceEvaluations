@@ -152,6 +152,12 @@ class Criterio{
         $dao = new CriterioDao();
         echo json_encode($dao->listPreguntasDocenteDocente());
     }  
+
+    public function listarPreguntasAutoDirector(){
+        $dao = new CriterioDao();
+        echo json_encode($dao->listarPreguntasAutoDirector());
+    }  
+
     
 }
 ?>
