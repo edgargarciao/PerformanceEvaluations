@@ -64,7 +64,10 @@ class DocenteDao {
                   FROM persona 
                   INNER JOIN docente ON persona.dni = docente.id_persona 
                   INNER JOIN usuario ON usuario.usuario = docente.codigo  
-                  WHERE NOT EXISTS(
+                  WHERE 
+                  docente.id_tipo_docente = 2
+                  AND
+                  NOT EXISTS(
                       SELECT  *
                         FROM  evaluacion e
                         WHERE e.id_tipo_evaluacion = 1
@@ -95,7 +98,10 @@ class DocenteDao {
                   FROM persona 
                   INNER JOIN docente ON persona.dni = docente.id_persona 
                   INNER JOIN usuario ON usuario.usuario = docente.codigo  
-                  WHERE NOT EXISTS(
+                  WHERE 
+                  docente.id_tipo_docente = 2
+                  AND
+                  NOT EXISTS(
                       SELECT  *
                         FROM  evaluacion e
                         WHERE e.id_tipo_evaluacion = 2
