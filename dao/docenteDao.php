@@ -94,6 +94,13 @@ class DocenteDao {
     }
 
     public function listarDocentesDocente(){
+        $cod = "";
+        if($_SESSION['director']!=null){
+            $cod = $_SESSION['director'];
+        }else if($_SESSION['docente']){
+            $cod = $_SESSION['docente'];
+        }
+
         $query = "SELECT docente.codigo, persona.nombres, persona.apellidos, persona.celular, persona.direccion, persona.correo, docente.id_departamento, usuario.estado 
                   FROM persona 
                   INNER JOIN docente ON persona.dni = docente.id_persona 
@@ -103,7 +110,7 @@ class DocenteDao {
                   AND
                   NOT EXISTS(
                       SELECT  *
-                        FROM  evaluacion e
+                        FROM  evaluacion e                         
                         WHERE e.id_tipo_evaluacion = 2
                           AND EXISTS(
                               SELECT  *
@@ -111,6 +118,7 @@ class DocenteDao {
                                WHERE  ed.id_evaluacion = e.id
                                  AND  ed.codigo_docente = docente.codigo
                           )
+                          AND e.profesor_desde = $cod
 
                   )                 
                   ORDER BY persona.nombres";

@@ -282,8 +282,7 @@ class Router
                 $this->controllerCriterio->listarPreguntasDirectorDocente();
             }
 
-            elseif ($_POST['solicitud'] == 'guardarEvaluacionDirectorDocente'){        
-                
+            elseif ($_POST['solicitud'] == 'guardarEvaluacionDirectorDocente'){                
                 $codigoDocente = $_POST['codigoDocente'];
                 $resultados = ($_POST['resultados']);                 
                 $codigoDirector = $_SESSION['director'];

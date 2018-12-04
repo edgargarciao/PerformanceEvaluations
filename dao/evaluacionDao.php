@@ -7,7 +7,14 @@ class EvaluacionDao {
     }
 
     public function insertar($dto){
-        $query = "INSERT INTO evaluacion (id_periodo, resultado, descripcion, id_tipo_evaluacion) VALUES ('".$dto->getIdPeriodo()."', '".$dto->getResultado()."', '".$dto->getDescripcion()."', '".$dto->getIdTipoEvaluacion()."')";
+        $cod = "";
+        if($_SESSION['director']!=null){
+            $cod = $_SESSION['director'];
+        }else if($_SESSION['docente']){
+            $cod = $_SESSION['docente'];
+        }
+
+        $query = "INSERT INTO evaluacion (id_periodo, resultado, descripcion, id_tipo_evaluacion, profesor_desde) VALUES ('".$dto->getIdPeriodo()."', '".$dto->getResultado()."', '".$dto->getDescripcion()."', '".$dto->getIdTipoEvaluacion()."',$cod)";
         $this->model->conexion();
         $respuesta = $this->model->query($query);
         $this->model->closeConexion();
