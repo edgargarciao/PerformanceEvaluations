@@ -22,18 +22,23 @@ class General extends model{
 
                 if ($array['typeUser'] == 1) {
                     session_start();
+                    error_log('USUUUUUARIOOOO  2 --> '.$user);
+                    $_SESSION = array();
                     $_SESSION['director'] = $user;
                     echo '<script> alert("Bienvenido, Director")</script>';
                     header('Location: views/director/home.php');
                     exit();
                 } elseif ($array['typeUser'] == 2) {
                     session_start();
+                    $_SESSION = array();
+                    error_log('USUUUUUARIOOOO --> '.$user);
                     $_SESSION['docente'] = $user;
                     echo '<script> alert("Bienvenido, Docente")</script>';
                     header('Location: views/docente/home.php');
                     exit();
                 } elseif ($array['typeUser'] == 3) {
                     session_start();
+                    $_SESSION = array();
                     $_SESSION['student'] = $user;
                     echo '<script> alert("Bienvenido, Estudiante")</script>';
                     header('Location: views/student/evaluationResult.php');
@@ -130,6 +135,9 @@ class General extends model{
 
         // Destruir todas las variables de sesión.
         $_SESSION = array();
+
+        $_SESSION['director'] = null;
+        $_SESSION['docente'] = null;
 
         // Si se desea destruir la sesión completamente, borre también la cookie de sesión.
         // Nota: ¡Esto destruirá la sesión, y no la información de la sesión!

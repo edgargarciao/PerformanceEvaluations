@@ -93,6 +93,8 @@ if (!isset($_SESSION['docente'])){
         <div class="container nav-espacio">
             <h1 class="all-tittles">Ver docentes</h1>
         </div>
+
+
         <section class="full-reset text-center">
             <div class="container-fluid"  style="margin: 0px 0;">
                 <div class="row">
@@ -111,7 +113,7 @@ if (!isset($_SESSION['docente'])){
                                         <div class="table-responsive">
                                             <div id = "list_pair" method="post">
                                                 <table id="dataTables-example" class="table table-striped text-center" border="1"style="border: #8080802e 1px solid">
-                                                    <thead>
+                                                <thead>
                                                     <tr class="danger">
                                                         <th class="text-center">Nombre del docente</th>
                                                         <th class="text-center">Acción</th>
@@ -136,6 +138,9 @@ if (!isset($_SESSION['docente'])){
                 </div>
             </div>
         </section>
+
+
+
         <footer class="footer full-reset" style="margin-top: 0 !important;">
             <div class="container-fluid">
                 <div class="row">
@@ -183,5 +188,8 @@ if (!isset($_SESSION['docente'])){
     <script src="../../assets/js/main.js"></script>
     <!-- Fonts js -->
     <script src="../../assets/js/docente.js"></script>
+
+    
+
 </body>
 </html>

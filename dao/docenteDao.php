@@ -97,16 +97,18 @@ class DocenteDao {
         $cod = "";
         if($_SESSION['director']!=null){
             $cod = $_SESSION['director'];
-        }else if($_SESSION['docente']){
+        }else if($_SESSION['docente']!=null){
             $cod = $_SESSION['docente'];
         }
-
+        error_log("COOOOOD --> ".$cod);
         $query = "SELECT docente.codigo, persona.nombres, persona.apellidos, persona.celular, persona.direccion, persona.correo, docente.id_departamento, usuario.estado 
                   FROM persona 
                   INNER JOIN docente ON persona.dni = docente.id_persona 
                   INNER JOIN usuario ON usuario.usuario = docente.codigo  
                   WHERE 
                   docente.id_tipo_docente = 2
+                  AND
+                docente.codigo <> $cod
                   AND
                   NOT EXISTS(
                       SELECT  *
