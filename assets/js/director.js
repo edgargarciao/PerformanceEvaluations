@@ -1913,6 +1913,10 @@ function guardarEvaluacionDirectorDocente(){
         }else if(document.getElementById(criteriosDirectorDocente[j].codigo+"-5").checked){
             value = 5;
         }
+        if(value == 0){
+            alert("Debes llenar todos los campos");
+            return;
+        }
         resultados.push({codigo:criteriosDirectorDocente[j].codigo, valor:value});
     }  
 

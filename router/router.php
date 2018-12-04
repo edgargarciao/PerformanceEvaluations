@@ -285,9 +285,9 @@ class Router
             elseif ($_POST['solicitud'] == 'guardarEvaluacionDirectorDocente'){        
                 
                 $codigoDocente = $_POST['codigoDocente'];
-                $resultados = $_POST['resultados']; 
+                $resultados = ($_POST['resultados']);                 
                 $codigoDirector = $_SESSION['director'];
-                $this->controllerCriterio->guardarEvaluacionDirectorDocente();
+                $this->controllerDirector->evaluacionDocente($codigoDocente,$resultados,$codigoDirector);
             }
             
             

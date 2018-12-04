@@ -118,11 +118,15 @@ class Director{
         echo json_encode($dao->listar());
     }
 
-    public function evaluacionDocente($codigo, $a, $b, $c, $d, $e, $f, $g, $h){
-        $numItem = 8;
+    public function evaluacionDocente($codigoDocente,$resultados,$codigoDirector){//}, $a, $b, $c, $d, $e, $f, $g, $h){
+        
+        $numItem = count($resultados);
         $valorPorcentual = 100/$numItem;
         $valorItem =$valorPorcentual/10;
-        $resultado = $a*$valorItem+$b*$valorItem+$c*$valorItem+$d*$valorItem+$e*$valorItem+$f*$valorItem+$g*$valorItem+$h*$valorItem;
+        $resultado = 0;
+        foreach($resultados as $item) { //foreach element in $arr
+            $resultado = $resultado + ($item['valor'] * $valorItem);
+        }
 
         $daoP = new PeriodoDao();
         $buscar_periodo = $daoP->buscarActual();
@@ -135,9 +139,12 @@ class Director{
         if ($respuesta == 0) {
             $buscar_id_evaluation = $daoE->buscarUltimo();
             $id_evaluation = $buscar_id_evaluation['id'];
+            error_log("LLLEGGGOOOOO ---> ".$id_evaluation);
+            error_log("LLLEGGGOOOOO 2 ---> ".$codigoDocente);
 
-            echo '<script> alert("Creacion Exitosa")</script>';
-            $evaluacionD = $this->crearEvaluacionDocente($codigo, $id_evaluation);
+            echo '<script type="text/javascript"> alert("Creacion Exitosa")</script>';
+            $evaluacionD = $this->crearEvaluacionDocente($codigoDocente, $id_evaluation);
+            error_log("evaluacionD ------>  ".$evaluacionD);
             if ($evaluacionD == 0) {
                 header('Location: views/director/listTeacherEvaluation.php');
                 echo '<script> alert("Evaluacion Exitoso")</script>';
@@ -160,6 +167,7 @@ class Director{
         }else {
             echo '<script> alert("Creacion Fallida")</script>';
         }
+        return $respuesta;
     }
 
     public function evaluacionPar($codigo, $a, $b, $c, $d, $e, $f, $g, $h){
