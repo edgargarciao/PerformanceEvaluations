@@ -59,6 +59,37 @@ class DocenteDao {
         return ($array);
     }
 
+    public function listarDirectorDocente(){
+        $query = "SELECT docente.codigo, persona.nombres, persona.apellidos, persona.celular, persona.direccion, persona.correo, docente.id_departamento, usuario.estado 
+                  FROM persona 
+                  INNER JOIN docente ON persona.dni = docente.id_persona 
+                  INNER JOIN usuario ON usuario.usuario = docente.codigo  
+                  WHERE NOT EXISTS(
+                      SELECT  *
+                        FROM  evaluacion e
+                        WHERE e.id_tipo_evaluacion = 1
+                          AND EXISTS(
+                              SELECT  *
+                                FROM  evaluaciondocente ed
+                               WHERE  ed.id_evaluacion = e.id
+                                 AND  ed.codigo_docente = docente.codigo
+                          )
+
+                  )                 
+                  ORDER BY persona.nombres";
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        $array = array();
+
+        if(isset($respuesta) && $respuesta->num_rows>0){
+            while($row = mysqli_fetch_array($respuesta)){
+                array_unshift($array, $row);
+            }
+        }
+        return ($array);
+    }
+
     public function listarTipo($tipo){
         $query = "SELECT * FROM usuario ORDER BY usuario ASC WHERE tipo = $tipo" ;
         $this->model->conexion();

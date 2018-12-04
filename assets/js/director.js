@@ -3,7 +3,7 @@
 var preguntasDirector = [];
 var preguntasDocente = []; 
 
-var codigoDocente = 0;
+var codigoDocente;
 
 
 function errorSesion() {
@@ -696,7 +696,7 @@ var accion9 = document.querySelector("#list_teacher");
 if(accion9!=null) {
     $.ajax({
         url: "../../include.php",
-        data: {solicitud: 'listDocentes'},
+        data: {solicitud: 'listarDirectorDocente'},
         type: "post",
         //dataType: "Array",
         success: function (response) {

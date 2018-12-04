@@ -289,10 +289,11 @@ class Router
                 $codigoDirector = $_SESSION['director'];
                 $this->controllerDirector->evaluacionDocente($codigoDocente,$resultados,$codigoDirector);
             }
-            
-            
+            elseif ($_POST['solicitud'] == 'listarDirectorDocente'){
+                $this->controllerDirector->listarDirectorDocente();
+            }
 
-            
+
 
             
             //Estudiante

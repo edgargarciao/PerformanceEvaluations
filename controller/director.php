@@ -81,6 +81,13 @@ class Director{
         echo json_encode($dao->listar());
     }
 
+    public function listarDirectorDocente(){
+        $dao = new DocenteDao();
+        echo json_encode($dao->listarDirectorDocente());
+    }
+
+    
+
     public function crearMateria($codigo, $nombre){
         $dto = new MateriaDto($codigo, $nombre, 1);
         $dao = new MateriaDao();
@@ -139,12 +146,12 @@ class Director{
         if ($respuesta == 0) {
             $buscar_id_evaluation = $daoE->buscarUltimo();
             $id_evaluation = $buscar_id_evaluation['id'];
-            error_log("LLLEGGGOOOOO ---> ".$id_evaluation);
-            error_log("LLLEGGGOOOOO 2 ---> ".$codigoDocente);
+            error_log('(1) ---> '.$id_evaluation);
+            error_log('(2) ---> '.$codigoDocente);
 
             echo '<script type="text/javascript"> alert("Creacion Exitosa")</script>';
             $evaluacionD = $this->crearEvaluacionDocente($codigoDocente, $id_evaluation);
-            error_log("evaluacionD ------>  ".$evaluacionD);
+            error_log('(3) ---> '.$evaluacionD);
             if ($evaluacionD == 0) {
                 header('Location: views/director/listTeacherEvaluation.php');
                 echo '<script> alert("Evaluacion Exitoso")</script>';

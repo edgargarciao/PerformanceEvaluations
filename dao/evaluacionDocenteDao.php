@@ -8,6 +8,7 @@ class EvaluacionDocenteDao {
 
     public function insertar($dto){
         $query = "INSERT INTO evaluaciondocente (codigo_docente, id_evaluacion) VALUES ('".$dto->getCodigoDocente()."', ".$dto->getIdEvaluacion().")";
+        error_log("QUERYYYY --> ".$query);
         $this->model->conexion();
         $respuesta = $this->model->query($query);
         $this->model->closeConexion();

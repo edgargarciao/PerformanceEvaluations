@@ -183,7 +183,7 @@ if (!isset($_SESSION['director'])){
 
 
     <?php 
-        echo '<script type="text/javascript"> cargarEvaluacionDirectorDocente('.$_GET['id'].'); </script>';
+        echo '<script type="text/javascript"> cargarEvaluacionDirectorDocente("'.$_GET['id'].'"); </script>';
     ?>
     
 
