@@ -86,6 +86,12 @@ class Director{
         echo json_encode($dao->listarDirectorDocente());
     }
 
+    public function listarDocentesDocente(){
+        $dao = new DocenteDao();
+        echo json_encode($dao->listarDocentesDocente());
+    }
+
+    
     
 
     public function crearMateria($codigo, $nombre){
@@ -125,7 +131,7 @@ class Director{
         echo json_encode($dao->listar());
     }
 
-    public function evaluacionDocente($codigoDocente,$resultados,$codigoDirector){//}, $a, $b, $c, $d, $e, $f, $g, $h){
+    public function evaluacionDocente($codigoDocente,$resultados,$codigoDirector,$tipoevaluacion){//}, $a, $b, $c, $d, $e, $f, $g, $h){
         
         $numItem = count($resultados);
         $valorPorcentual = 100/$numItem;
@@ -139,7 +145,7 @@ class Director{
         $buscar_periodo = $daoP->buscarActual();
         $id_periodo = $buscar_periodo['id'];
 
-        $dtoE = new EvaluacionDto($id_periodo, $resultado, "Ninguna", 1);
+        $dtoE = new EvaluacionDto($id_periodo, $resultado, "Ninguna", $tipoevaluacion);
         $daoE = new EvaluacionDao();
 
         $respuesta = $daoE->insertar($dtoE);
@@ -149,11 +155,13 @@ class Director{
             error_log('(1) ---> '.$id_evaluation);
             error_log('(2) ---> '.$codigoDocente);
 
-            echo '<script type="text/javascript"> alert("Creacion Exitosa")</script>';
             $evaluacionD = $this->crearEvaluacionDocente($codigoDocente, $id_evaluation);
-            error_log('(3) ---> '.$evaluacionD);
             if ($evaluacionD == 0) {
-                header('Location: views/director/listTeacherEvaluation.php');
+                if($tipoevaluacion == 1){
+                    header('Location: views/director/listTeacherEvaluation.php');
+                }else if($tipoevaluacion == 2){
+                    header('Location: views/director/listPairEvaluation.php');
+                }
                 echo '<script> alert("Evaluacion Exitoso")</script>';
             } else {
                 echo '<script> alert("Esta evaluacion ya se realizo")</script>';

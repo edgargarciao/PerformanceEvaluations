@@ -147,6 +147,11 @@ class Criterio{
             $uses = $item['var1']; //etc
         }
     }
+
+    public function listPreguntasDocenteDocente(){
+        $dao = new CriterioDao();
+        echo json_encode($dao->listPreguntasDocenteDocente());
+    }  
     
 }
 ?>

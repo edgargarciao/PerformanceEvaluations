@@ -287,13 +287,27 @@ class Router
                 $codigoDocente = $_POST['codigoDocente'];
                 $resultados = ($_POST['resultados']);                 
                 $codigoDirector = $_SESSION['director'];
-                $this->controllerDirector->evaluacionDocente($codigoDocente,$resultados,$codigoDirector);
+                $this->controllerDirector->evaluacionDocente($codigoDocente,$resultados,$codigoDirector,1);
             }
             elseif ($_POST['solicitud'] == 'listarDirectorDocente'){
                 $this->controllerDirector->listarDirectorDocente();
             }
 
+            elseif ($_POST['solicitud'] == 'guardarEvaluacionDocenteDocente'){        
+                
+                $codigoDocente = $_POST['codigoDocente'];
+                $resultados = ($_POST['resultados']);                 
+                $codigoDirector = $_SESSION['director'];
+                $this->controllerDirector->evaluacionDocente($codigoDocente,$resultados,$codigoDirector,2);
+            }
 
+            elseif ($_POST['solicitud'] == 'listPreguntasDocenteDocente'){        
+                $this->controllerCriterio->listPreguntasDocenteDocente();
+            }
+
+            elseif ($_POST['solicitud'] == 'listarDocentesDocente'){
+                $this->controllerDirector->listarDocentesDocente();
+            }
 
             
             //Estudiante

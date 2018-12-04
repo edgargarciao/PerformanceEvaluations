@@ -52,11 +52,11 @@ if (!isset($_SESSION['director'])){
                         <img src="../../assets/imgs/evaluation.png" alt="user" class="img-responsive center-box" style="max-width: 110px;">
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
-                        En esta sección se debe diligenciar la evaluación a los pares disponibles del departamento.
+                        En esta sección se debe diligenciar la evaluación a los docentes disponibles del departamento.
                     </div>
                     <div class="container-fluid contai-espacio">
                         <div class="container-flat-form">
-                            <div class="title-flat-form title-flat-red">Evaluación par</div>
+                            <div class="title-flat-form title-flat-red">Evaluación  docente</div>
                             <div class="container-fluid"  style="margin: 50px 0;">
                                 <div class="row">
                                     <div class="col-xs-12">
@@ -70,9 +70,9 @@ if (!isset($_SESSION['director'])){
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>"dd/mm/aaaa"</td>
-                                                        </tr>
+                                                    <tr>
+                                                        <td>"dd/mm/aaaa"</td>
+                                                    </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -82,15 +82,15 @@ if (!isset($_SESSION['director'])){
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="table-responsive">
-                                        <h3 class="text-center all-tittles">Descripción de criterios de notas</h3>
-                                        <table class="table table-hover text-center">
-                                            <thead>
+                                            <h3 class="text-center all-tittles">Descripción de criterios de notas</h3>
+                                            <table class="table table-hover text-center">
+                                                <thead>
                                                 <tr>
                                                     <th class="text-center">Escala de calificación</th>
                                                     <th class="text-center">Rango de calificación</th>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
+                                                </thead>
+                                                <tbody>
                                                 <tr>
                                                     <td>Desempeño excelente (EX)</td>
                                                     <td class="text-center">5</td>
@@ -111,81 +111,49 @@ if (!isset($_SESSION['director'])){
                                                     <td>Desempeño deficiente (D)</td>
                                                     <td class="text-center">1</td>
                                                 </tr>
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <br>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <!-- Formulario de evaluacion par-->
-                                    <form id="pair" action="../../include.php" method="post" autocomplete="off">
-                                        <div class="table-responsive">
-                                           <h3 class="text-center all-tittles">Tabla de evaluación a docentes</h3>
-                                           <table class="table table-hover text-center">
-                                            <thead>
-                                                <tr>
-                                                    <th class="text-right"></th>
-                                                    <th class="text-right">Nombre docente:</th>
-                                                    <th id="nameDoc" class="text-left" style="font-weight: normal">nombre docente</th>
-                                                    <input type="hidden" id="codigo" name="cod" value="teacherDir">
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th class="text-center">Criterio a calificar</th>
-                                                      <td class="text-center" >EX</td>
-                                                      <td class="text-center" >S</td>
-                                                      <td class="text-center" >B</td>
-                                                      <td class="text-center" >A</td>
-                                                      <td class="text-center" >D</td>
-                                              </tr>
-                                              <tr>
-                                                <td class="text-center">Compromiso institucional</td>
-                                                <td><input type="radio" name="a" value="5"></td>
-                                                <td><input type="radio" name="a" value="4"></td>
-                                                <td><input type="radio" name="a" value="3"></td>
-                                                <td><input type="radio" name="a" value="2"></td>
-                                                <td><input type="radio" name="a" value="1"></td>
-                                              </tr>
-                                              <tr>
-                                                <td class="text-center">Liderazgo</td>
-                                                <td><input type="radio" name="b" value="5"></td>
-                                                <td><input type="radio" name="b" value="4"></td>
-                                                <td><input type="radio" name="b" value="3"></td>
-                                                <td><input type="radio" name="b" value="2"></td>
-                                                <td><input type="radio" name="b" value="1"></td>
-                                              </tr>
-                                              <tr>
-                                                <td class="text-center">Responsabilidad</td>
-                                                <td><input type="radio" name="c" value="5"></td>
-                                                <td><input type="radio" name="c" value="4"></td>
-                                                <td><input type="radio" name="c" value="3"></td>
-                                                <td><input type="radio" name="c" value="2"></td>
-                                                <td><input type="radio" name="c" value="1"></td>
-                                              </tr>
-                                              <tr>
-                                                <td class="text-center">Resolucion de Conflictos</td>
-                                                <td><input type="radio" name="d" value="5"></td>
-                                                <td><input type="radio" name="d" value="4"></td>
-                                                <td><input type="radio" name="d" value="3"></td>
-                                                <td><input type="radio" name="d" value="2"></td>
-                                                <td><input type="radio" name="d" value="1"></td>
-                                              </tr>
-
-                                    
-                                            </tbody>
-                                            </table>
-                                            <p class="text-center">
-                                                <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                                <!-- Router -->
-                                                <input type="hidden" name="solicitud" value="pairDir">
-                                            </p>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <!-- Formulario de evaluacion director-->
+                                        <form id="formId">
+                                            <div class="table-responsive">
+                                                <h3 class="text-center all-tittles">Tabla de evaluación a docentes</h3>
+                                                <table id="tabla" class="table table-hover text-center">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="text-right"></th>
+                                                        <th class="text-right">Nombre docente:</th>
+                                                        <th id="nameDoc" class="text-left" style="font-weight: normal">nombre docente</th>                                                        
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                    </thead>
+                                                    
+                                                        <tbody>
+                                                            
+                                                            <tr>
+                                                                <th class="text-center">Criterio a calificar</th>
+                                                                <td class="text-center" >EX</td>
+                                                                <td class="text-center" >S</td>
+                                                                <td class="text-center" >B</td>
+                                                                <td class="text-center" >A</td>
+                                                                <td class="text-center" >D</td>
+                                                            </tr> 
+                                                                                                                                                                                                            
+                                                        </tbody>
+                                                    
+                                                </table>
+                                                <p class="text-center">
+                                                    <a class="btn btn-danger" onclick="guardarEvaluacionDocenteDocente()"><i class="zmdi zmdi-floppy" onclick="guardarEvaluacionDirectorDocente()"></i> &nbsp;&nbsp; Guardar</a>
+                                                </p>
                                             </div>
                                         </div>
-                                    </form>
+                                     </form>  
                                 </div>
                             </div>
                         </div>
@@ -193,6 +161,7 @@ if (!isset($_SESSION['director'])){
                 </div>
             </div>
         </section>
+
  <?php include 'General/down.php';?>
     </div>
     <!-- Jquery v1.11.2 -->
@@ -211,5 +180,9 @@ if (!isset($_SESSION['director'])){
     <script src="../../assets/js/main.js"></script>
     <!-- Fonts js -->
     <script src="../../assets/js/director.js"></script>
+
+    <?php 
+        echo '<script type="text/javascript"> cargarEvaluacionDocenteDocente("'.$_GET['id'].'"); </script>';
+    ?>
 </body>
 </html>

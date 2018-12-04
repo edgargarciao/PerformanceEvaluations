@@ -202,6 +202,7 @@ class CriterioDao {
         $query = "  SELECT  *
                     FROM    criterio
                     WHERE   tipoEvaluacion = 1
+                      AND   estado = 'Activo'
                     ORDER BY id desc";
         $this->model->conexion();
         $respuesta = $this->model->query($query);
@@ -215,6 +216,26 @@ class CriterioDao {
         }
         return ($array);
     }
+    public function listPreguntasDocenteDocente(){
+        $query = "  SELECT  *
+                    FROM    criterio
+                    WHERE   tipoEvaluacion = 2
+                      AND   estado = 'Activo'
+                    ORDER BY id desc";
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        $array = array();
+        
+        if(isset($respuesta) && $respuesta->num_rows>0){
+            while($row = mysqli_fetch_array($respuesta)){
+                array_unshift($array, $row);
+            }
+        }
+        return ($array);
+    }
+
+    
 
 }
 ?>
