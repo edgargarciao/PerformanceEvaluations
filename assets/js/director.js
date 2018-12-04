@@ -386,7 +386,7 @@ if(accion6!=null) {
                     respuesta3 += 'Deshabilitar';
                     respuesta3 += '</button>';
                     
-                    t.row.add([Nombre, Codigo, respuesta3]).draw(false);
+                    t.row.add([Codigo, Nombre, respuesta3]).draw(false);
                     respuesta2 = "";
                     respuesta3 = "";
                     respuesta = "";

@@ -95,12 +95,12 @@ class DocenteDao {
 
     public function listarDocentesDocente(){
         $cod = "";
-        if($_SESSION['director']!=null){
+        if(isset($_SESSION['director'])){
             $cod = $_SESSION['director'];
-        }else if($_SESSION['docente']!=null){
+        }elseif(isset($_SESSION['docente'])){
             $cod = $_SESSION['docente'];
         }
-        error_log("COOOOOD --> ".$cod);
+
         $query = "SELECT docente.codigo, persona.nombres, persona.apellidos, persona.celular, persona.direccion, persona.correo, docente.id_departamento, usuario.estado 
                   FROM persona 
                   INNER JOIN docente ON persona.dni = docente.id_persona 

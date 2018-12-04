@@ -308,12 +308,11 @@ class Router
                 $this->controllerDirector->listarDocentesDocente();
             }
 
-            
-            //Estudiante
-            /* elseif ($_POST['solicitud'] == ''){
-
+            elseif($_POST['solicitud'] == 'listarDocentesDocente'){
+                
             }
-            */
+            	
+
 
             else {
                 echo '<script> alert("No encontro la solicitud")</script>';
