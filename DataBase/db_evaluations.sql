@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 03, 2018 at 09:58 AM
+-- Generation Time: Dec 03, 2018 at 08:14 PM
 -- Server version: 5.7.24-0ubuntu0.18.04.1
 -- PHP Version: 7.2.10-0ubuntu0.18.04.1
 
@@ -59,10 +59,14 @@ CREATE TABLE `criterio` (
 --
 
 INSERT INTO `criterio` (`id`, `nombreCriterio`, `tipoEvaluacion`, `estado`) VALUES
-(1, 'Compromiso institucional 2', 2, 'Activo'),
+(1, 'Compromiso institucional 3', 2, 'Activo'),
 (2, 'test3', 3, 'Activo'),
 (4, 'Test Auto Dir', 4, 'Activo'),
-(5, 'New aut dir', 4, 'Activo');
+(5, 'New aut dir', 4, 'Activo'),
+(6, 'Crit 2', 3, 'Activo'),
+(7, 'Compromiso institucional', 4, 'Activo'),
+(8, 'CREACION PRUEBA', 1, 'Activo'),
+(9, 'Cast', 1, 'Activo');
 
 -- --------------------------------------------------------
 
@@ -83,7 +87,12 @@ CREATE TABLE `criteriopregunta` (
 
 INSERT INTO `criteriopregunta` (`id`, `nombrePregunta`, `criterio`, `estado`) VALUES
 (1, 'Participa en los diversos comites y equipos de trabajo que desarrollan acciones de mejora de los procesos pedagogicos.', 4, 'Activo'),
-(3, 'qwqwqwqwq2', 4, 'Activo');
+(3, 'qwqwqwqwq2', 4, 'Activo'),
+(4, 'Hola test 4', 2, 'Activo'),
+(5, 'rtrtrtrt', 6, 'Activo'),
+(6, 'ghghghghgh', 2, 'Activo'),
+(7, 'opopopopopop', 5, 'Activo'),
+(8, 'asasaas', 7, 'Activo');
 
 -- --------------------------------------------------------
 
@@ -123,7 +132,8 @@ CREATE TABLE `docente` (
 INSERT INTO `docente` (`codigo`, `id_persona`, `id_tipo_docente`, `id_departamento`) VALUES
 ('01080', '1093783417', 1, 1),
 ('01995', '1093783416', 2, 1),
-('10000', '1234', 2, 1);
+('10000', '1234', 2, 1),
+('11111', '111', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -165,7 +175,8 @@ CREATE TABLE `evaluacion` (
   `id` int(11) NOT NULL,
   `resultado` decimal(2,0) NOT NULL,
   `descripcion` varchar(500) NOT NULL,
-  `id_tipo_evaluacion` int(11) NOT NULL
+  `id_tipo_evaluacion` int(11) NOT NULL,
+  `id_periodo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -207,6 +218,27 @@ CREATE TABLE `grupo` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `periodo`
+--
+
+CREATE TABLE `periodo` (
+  `id` int(11) NOT NULL,
+  `fechaI` date NOT NULL,
+  `fechaF` date NOT NULL,
+  `descripcion` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `periodo`
+--
+
+INSERT INTO `periodo` (`id`, `fechaI`, `fechaF`, `descripcion`) VALUES
+(1, '2018-07-01', '2018-12-30', 'Segundo periodo 2018'),
+(2, '2019-01-10', '2019-06-30', 'Primer periodo 2019');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `persona`
 --
 
@@ -228,6 +260,7 @@ INSERT INTO `persona` (`dni`, `nombres`, `apellidos`, `celular`, `direccion`, `c
 ('1093783415', 'Lizeth', 'Rios Epalza', '3006741974', 'Mz 3 Lote 97 BR. Valles de Giron', 'lizethre@ufps.edu.co'),
 ('1093783416', 'Judith del Pilar', 'Rodriguez Tenjo', '3006741978', 'Av 0 Cll 0 # 0-0 BR.', 'judithdelpilarrt@ufps.edu.co'),
 ('1093783417', 'Oscar Alberto', 'Gallardo Perez', '3186230805', 'Mz 5 Lote 98 BR. Valles de Giron', 'oscargallardo@ufps.edu.co'),
+('111', 'Judith del Pilar', 'null', 'null', 'null', 'Judith@gmail.com'),
 ('1234', 'Juan medrano2', 'null', 'null', 'null', 'juan.medrano@gmail.com');
 
 -- --------------------------------------------------------
@@ -416,7 +449,8 @@ ALTER TABLE `estudianteasignatura`
 --
 ALTER TABLE `evaluacion`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_tipo_evaluacion` (`id_tipo_evaluacion`);
+  ADD KEY `id_tipo_evaluacion` (`id_tipo_evaluacion`),
+  ADD KEY `id_periodo` (`id_periodo`);
 
 --
 -- Indexes for table `evaluaciondocente`
@@ -441,6 +475,12 @@ ALTER TABLE `grupo`
   ADD PRIMARY KEY (`id`),
   ADD KEY `codigo_asignatura` (`codigo_asignatura`),
   ADD KEY `id_docente` (`id_docente`);
+
+--
+-- Indexes for table `periodo`
+--
+ALTER TABLE `periodo`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `persona`
@@ -503,12 +543,12 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `criterio`
 --
 ALTER TABLE `criterio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `criteriopregunta`
 --
 ALTER TABLE `criteriopregunta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `departamento`
 --
@@ -518,12 +558,17 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT for table `evaluacion`
 --
 ALTER TABLE `evaluacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `evaluacionestudiante`
 --
 ALTER TABLE `evaluacionestudiante`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `periodo`
+--
+ALTER TABLE `periodo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `pregunta`
 --
@@ -599,7 +644,8 @@ ALTER TABLE `estudianteasignatura`
 -- Constraints for table `evaluacion`
 --
 ALTER TABLE `evaluacion`
-  ADD CONSTRAINT `evaluacion_ibfk_1` FOREIGN KEY (`id_tipo_evaluacion`) REFERENCES `tipoevaluacion` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `evaluacion_ibfk_1` FOREIGN KEY (`id_tipo_evaluacion`) REFERENCES `tipoevaluacion` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `evaluacion_ibfk_2` FOREIGN KEY (`id_periodo`) REFERENCES `periodo` (`id`);
 
 --
 -- Constraints for table `evaluaciondocente`
