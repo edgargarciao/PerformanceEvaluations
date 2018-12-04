@@ -2025,7 +2025,7 @@ function guardarEvaluacionDocenteDocente(){
         data: {solicitud: 'guardarEvaluacionDocenteDocente', codigoDocente:codigoDocente, resultados:resultados},
         type: "post",     
         success: function (response) {
-            window.location="listTeacherEvaluation.php";                  
+            window.location="listPairEvaluation.php";                  
         },
         error: function(xhr, status, error) {            
             

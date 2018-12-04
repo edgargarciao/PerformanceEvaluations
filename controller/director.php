@@ -152,8 +152,6 @@ class Director{
         if ($respuesta == 0) {
             $buscar_id_evaluation = $daoE->buscarUltimo();
             $id_evaluation = $buscar_id_evaluation['id'];
-            error_log('(1) ---> '.$id_evaluation);
-            error_log('(2) ---> '.$codigoDocente);
 
             $evaluacionD = $this->crearEvaluacionDocente($codigoDocente, $id_evaluation);
             if ($evaluacionD == 0) {
