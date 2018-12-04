@@ -317,6 +317,16 @@ class Router
                 $this->controllerDirector->evaluacionPar($resultados,4);
             }
 
+
+            elseif($_POST['solicitud'] == 'listPreguntasAutoDocente'){
+                $this->controllerCriterio->listarPreguntasAutoDocente();
+            }
+            elseif($_POST['solicitud'] == 'guardarAutoEvaluacionDocente'){
+                $resultados = ($_POST['resultados']);                 
+                $codigoDirector = $_SESSION['director'];
+                $this->controllerDirector->evaluacionPar($resultados,3);
+            }
+
             
             	
             

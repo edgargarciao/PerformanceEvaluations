@@ -158,6 +158,11 @@ class Criterio{
         echo json_encode($dao->listarPreguntasAutoDirector());
     }  
 
+    public function listarPreguntasAutoDocente(){
+        $dao = new CriterioDao();
+        echo json_encode($dao->listarPreguntasAutoDocente());
+    } 
+
     
 }
 ?>
