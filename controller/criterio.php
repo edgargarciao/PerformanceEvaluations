@@ -163,6 +163,9 @@ class Criterio{
         echo json_encode($dao->listarPreguntasAutoDocente());
     } 
 
-    
+    public function listarPeriodos(){
+        $dao = new PeriodoDao();
+        echo json_encode($dao->listar());
+    }
 }
 ?>

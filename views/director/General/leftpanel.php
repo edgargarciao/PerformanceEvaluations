@@ -49,9 +49,10 @@
                     <li>
                         <div class="dropdown-menu-button"><i class="zmdi zmdi-chart zmdi-hc-fw"></i>&nbsp;&nbsp;Reportes<i class="zmdi zmdi-chevron-down pull-right zmdi-hc-fw"></i></div>
                         <ul class="list-unstyled">
-                            <li><a href="editEvaluations.php" style="color: black"><i class="zmdi zmdi-account zmdi-hc-fw"></i>&nbsp;&nbsp;Reporte individual</a></li>
-                            <li><a href="editSelfEvaluation.php" style="color: black"><i class="zmdi zmdi-accounts-alt zmdi-hc-fw"></i>&nbsp;&nbsp;Reporte del programa</a></li>
-                            <li><a href="editSelfEvaluationTeacher.php" style="color: black"><i class="zmdi zmdi-male zmdi-hc-fw"></i>&nbsp;&nbsp;Reporte personal</a></li>                            
+                            <li><a href="reportedirectorprofesor.php" style="color: black"><i class="zmdi zmdi-account zmdi-hc-fw"></i>&nbsp;&nbsp;Reporte director-docente</a></li>
+                            <li><a href="reporteprofesorprofesor.php" style="color: black"><i class="zmdi zmdi-account zmdi-hc-fw"></i>&nbsp;&nbsp;Reporte docente-docente</a></li>
+                            <li><a href="reporteautoevaluacionprofesor.php" style="color: black"><i class="zmdi zmdi-account zmdi-hc-fw"></i>&nbsp;&nbsp;Autoevaluaciones a docentes</a></li>                            
+                            <li><a href="reporteautoevaluacion.php" style="color: black"><i class="zmdi zmdi-male zmdi-hc-fw"></i>&nbsp;&nbsp;Autoevaluacion personal</a></li>                            
                         </ul>
                     </li>
 

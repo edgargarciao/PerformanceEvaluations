@@ -91,9 +91,6 @@ class Director{
         echo json_encode($dao->listarDocentesDocente());
     }
 
-    
-    
-
     public function crearMateria($codigo, $nombre){
         $dto = new MateriaDto($codigo, $nombre, 1);
         $dao = new MateriaDao();
@@ -237,6 +234,16 @@ class Director{
         } else {
             echo '<script> alert("Creacion Fallida")</script>';
         }
+    }
+
+    public function listarEvaluacionesDirectorProfesor($periodo){
+        $dao = new DocenteDao();
+        echo json_encode($dao->listarEvaluacionesDirectorProfesor($periodo));
+    }
+
+    public function listarEvaluacionesProfesorProfesor($periodo){
+        $dao = new DocenteDao();
+        echo json_encode($dao->listarEvaluacionesProfesorProfesor($periodo));
     }
 }
 ?>

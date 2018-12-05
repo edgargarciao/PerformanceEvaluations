@@ -2082,17 +2082,7 @@ if(accion6!=null) {
                             tbody.appendChild(tr);
                             count = 1;
                         }
-                        /*
-                        <tr>
-                            <td style="font-weight: bold">1. </td>
-                            <td class="text-justify">Participa en los diversos comités y equipos de trabajo que desarrollan acciones de mejora de los procesos pedagógicos.</td>
-                            <td><input type="radio" name="a" value="5"></td>
-                            <td><input type="radio" name="a" value="4"></td>
-                            <td><input type="radio" name="a" value="3"></td>
-                            <td><input type="radio" name="a" value="2"></td>
-                            <td><input type="radio" name="a" value="1"></td>
-                            <td>    </td>
-                        </tr>*/
+                        
                         
                             var tbody = document.getElementById("tbo");
 
@@ -2173,20 +2163,6 @@ if(accion6!=null) {
                             var crit = {codigo:criterioId, pregunta:codigoPregunta};
                             criteriosAutDirector.push(crit);
                         
-
-                        
-
-                        
-/*
-                        var radio1 = "<input type=\"radio\" name=\""+codigo+"\" id=\""+codigo+"-5\" value=\"5\"></td>";
-                        var radio2 = "<input type=\"radio\" name=\""+codigo+"\" id=\""+codigo+"-4\" value=\"4\"></td>";
-                        var radio3 = "<input type=\"radio\" name=\""+codigo+"\" id=\""+codigo+"-3\" value=\"3\"></td>";
-                        var radio4 = "<input type=\"radio\" name=\""+codigo+"\" id=\""+codigo+"-2\" value=\"2\"></td>";
-                        var radio5 = "<input type=\"radio\" name=\""+codigo+"\" id=\""+codigo+"-1\" value=\"1\"></td>";
-
-                        
-                        t.row.add([criterio, radio1,radio2,radio3,radio4,radio5]).draw(false);
-                        */
                     }
                 }else{
                     alert("Usted ya hizo su autoevaluacion");
@@ -2251,4 +2227,119 @@ function guardarAutoEvaluacionDirector(){
     });
 }
 
+/********************************************
+ *  REPORTE DIRECTOR DOCENTE
+ ********************************************/
 
+var accion77 = document.querySelector("#reporteDirectorProfesor");
+if(accion77!=null) {
+
+    colocarPeriodos("cambiarResultadosDirectorProfesor");
+    var e = document.getElementById("periodoList");
+    var  valuePeriodo = e.options[e.selectedIndex].value;
+    cambiarResultadosDirectorProfesor(valuePeriodo);
+}
+
+function cambiarResultadosDirectorProfesor(idPeriodo){
+
+
+    $.ajax({
+        url: "../../include.php",
+        data: {solicitud: 'evaluacionesDirectorProfesor', periodo:idPeriodo},
+        type: "post",
+        async:false,
+        success: function (response) {
+            var json = JSON.parse(response);
+
+            if (json.length != 0) {
+                var t = $('#dataTables-example').DataTable({ "bDestroy": true});
+                
+                for (var i = 0; i < json.length; i++) {
+                    var Nombre = json[i].nombres + " " + ((json[i].apellidos == "null")?"":json[i].apellidos);
+                    var resultado = json[i].resultado;
+                    t.row.add([Nombre, resultado]).draw(false);
+                }
+            }else{
+                var t = $('#dataTables-example').DataTable();
+                t.clear().draw();
+                alert("No hay evaluaciones aun realizadas.");
+            }
+        }
+    });
+
+}
+
+function colocarPeriodos(func){
+
+    $.ajax({
+        url: "../../include.php",
+        data: {solicitud: 'obtenerPeriodos'},
+        type: "post",
+        async:false,
+        success: function (response) {
+            var json = JSON.parse(response);
+            var respuesta = "";
+            var respuesta2 = "";
+
+            if (json.length != 0) {
+
+                for (var i = 0; i < json.length; i++) {
+                    var Codigo = json[i].id;
+                    var Nombre = json[i].descripcion;
+                    var FechaInicial = json[i].fechaI;
+                    var FechaFinal = json[i].fechaF;
+
+                    var x = document.getElementById("periodoList");
+                    var option = document.createElement("option");
+                    option.text = Nombre;
+                    option.setAttribute("value",Codigo);
+                    option.setAttribute("onclick",func+"("+Codigo+")");
+                    x.add(option); 
+                }
+            }
+
+        }
+    });
+}
+
+/********************************************
+ *  REPORTE DOCENTE DOCENTE
+ ********************************************/
+
+var accion778 = document.querySelector("#reporteProfesorProfesor");
+if(accion778!=null) {
+
+    colocarPeriodos("cambiarResultadosProfesorProfesor");
+    var e = document.getElementById("periodoList");
+    var  valuePeriodo = e.options[e.selectedIndex].value;
+    cambiarResultadosProfesorProfesor(valuePeriodo);
+}
+
+function cambiarResultadosProfesorProfesor(idPeriodo){
+
+
+    $.ajax({
+        url: "../../include.php",
+        data: {solicitud: 'evaluacionesProfesorProfesor', periodo:idPeriodo},
+        type: "post",
+        async:false,
+        success: function (response) {
+            var json = JSON.parse(response);
+
+            if (json.length != 0) {
+                var t = $('#dataTables-example').DataTable({ "bDestroy": true});
+                
+                for (var i = 0; i < json.length; i++) {
+                    var Nombre = json[i].nombres + " " + ((json[i].apellidos == "null")?"":json[i].apellidos);
+                    var resultado = json[i].resultado;
+                    t.row.add([Nombre, resultado]).draw(false);
+                }
+            }else{
+                var t = $('#dataTables-example').DataTable();
+                t.clear().draw();
+                alert("No hay evaluaciones aun realizadas.");
+            }
+        }
+    });
+
+}

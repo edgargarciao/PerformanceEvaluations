@@ -327,6 +327,22 @@ class Router
                 $this->controllerDirector->evaluacionPar($resultados,3);
             }
 
+            elseif($_POST['solicitud'] == 'obtenerPeriodos'){
+                $this->controllerCriterio->listarPeriodos($resultados);
+            }
+
+
+            elseif($_POST['solicitud'] == 'evaluacionesDirectorProfesor'){
+
+                $periodo = ($_POST['periodo']);
+                $this->controllerDirector->listarEvaluacionesDirectorProfesor($periodo);
+            }
+
+            elseif($_POST['solicitud'] == 'evaluacionesProfesorProfesor'){
+                $periodo = ($_POST['periodo']);
+                $this->controllerDirector->listarEvaluacionesProfesorProfesor($periodo);
+            }
+            
             
             	
             

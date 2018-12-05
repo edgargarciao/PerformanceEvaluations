@@ -17,10 +17,8 @@ class PeriodoDao {
         return 1;
     }
 
-
-
     public function listar(){
-        $query = "SELECT descripcion, fechaI, fechaF FROM periodo ORDER BY descripcion";
+        $query = "SELECT id, descripcion, fechaI, fechaF FROM periodo ORDER BY fechaI Desc";
         $this->model->conexion();
         $respuesta = $this->model->query($query);
         $this->model->closeConexion();
