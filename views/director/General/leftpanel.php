@@ -28,6 +28,12 @@
                         </ul>
                     </li>
                     <li>
+                        <div class="dropdown-menu-button"><i class="zmdi zmdi-calendar-note zmdi-hc-fw"></i>&nbsp;&nbsp;Periodos<i class="zmdi zmdi-chevron-down pull-right zmdi-hc-fw"></i></div>
+                        <ul class="list-unstyled">
+                            <li><a href="periodos.php" style="color: black"><i class="zmdi zmdi-calendar-alt zmdi-hc-fw"></i>&nbsp;&nbsp;Gestionar periodos</a></li>                            
+                        </ul>
+                    </li>
+                    <li>
                         <div class="dropdown-menu-button"><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i>&nbsp;&nbsp;Evaluaciones<i class="zmdi zmdi-chevron-down pull-right zmdi-hc-fw"></i></div>
                         <ul class="list-unstyled">
                             <li><a href="editEvaluations.php" style="color: black"><i class="zmdi zmdi-assignment-alert zmdi-hc-fw"></i>&nbsp;&nbsp;Editar Evaluacion</a></li>
@@ -39,5 +45,15 @@
                             <li><a href="evaluationProgress.php" style="color: black"><i class="zmdi zmdi-assignment zmdi-hc-fw"></i>&nbsp;&nbsp;Ver Progreso de Evaluaciónes</a></li>
                         </ul>
                     </li>
+
+                    <li>
+                        <div class="dropdown-menu-button"><i class="zmdi zmdi-chart zmdi-hc-fw"></i>&nbsp;&nbsp;Reportes<i class="zmdi zmdi-chevron-down pull-right zmdi-hc-fw"></i></div>
+                        <ul class="list-unstyled">
+                            <li><a href="editEvaluations.php" style="color: black"><i class="zmdi zmdi-account zmdi-hc-fw"></i>&nbsp;&nbsp;Reporte individual</a></li>
+                            <li><a href="editSelfEvaluation.php" style="color: black"><i class="zmdi zmdi-accounts-alt zmdi-hc-fw"></i>&nbsp;&nbsp;Reporte del programa</a></li>
+                            <li><a href="editSelfEvaluationTeacher.php" style="color: black"><i class="zmdi zmdi-male zmdi-hc-fw"></i>&nbsp;&nbsp;Reporte personal</a></li>                            
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
