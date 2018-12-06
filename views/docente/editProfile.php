@@ -82,7 +82,7 @@ if (!isset($_SESSION['docente'])){
                         <div class="title-flat-form title-flat-red">Editar Información</div>
                         <div class="container-fluid">
                             <!--Formulario de edit profile docente-->
-                            <form id="edit_profile" action="../../include.php" method="post" autocomplete="off">
+                            <form id="edit_profile" action="../../include.php" method="post" autocomplete="off" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
                                         <div class="group-material">
@@ -97,6 +97,24 @@ if (!isset($_SESSION['docente'])){
                                             <span class="bar"></span>
                                             <label>Dirección</label>
                                         </div>
+
+                                        <div class="group-material">
+                                            <input type="text" name="apellidos" id="ape" class="material-control tooltips-general" placeholder="Apellidos" required="" maxlength="50" data-toggle="tooltip">
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label>Apellidos</label>
+                                        </div>
+
+                                        <div class="group-material">
+                                            <input type="file" name="foto" onchange="previewFile()" id="foto" class="material-control tooltips-general" placeholder="Apellidos" data-toggle="tooltip">
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label>Foto</label>
+                                            
+                                            <img id="imgD" src="../../assets/imgs/user2.png" alt="user" class="img-responsive center-box" style="max-width: 110px; padding-top: 100px" >
+                                            
+                                        </div>
+
                                         <p class="text-center">
                                             <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i>&nbsp;&nbsp;Guardar</button>
                                             <input type="hidden" name="solicitud" value="actProfileDoc">

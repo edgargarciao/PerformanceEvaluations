@@ -48,7 +48,7 @@ if (!isset($_SESSION['docente'])){
                 <div class="container-fluid container-espacio">
                     <div class="row">
                         <div class="col-xs-12 col-sm-4 col-md-3">
-                            <img src="../../assets/imgs/user3.png" alt="user" class="img-responsive center-box" style="max-width: 110px;">
+                            <img id="imagenDoc" src="../../assets/imgs/user3.png" alt="user" class="img-responsive center-box" style="max-width: 110px;">
                         </div>
                         <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
                             Bienvenido a la sección de docente, acá podrá realizar sus respectivas evaluaciones y modificar los datos personales.

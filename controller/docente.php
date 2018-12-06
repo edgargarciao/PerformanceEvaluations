@@ -10,10 +10,10 @@ class Docente{
     }
 
     //Metodo de actualizar perfil de docente
-    public function actualizarPerfil($usuario, $celular, $direccion){
+    public function actualizarPerfil($usuario, $celular, $direccion,$apellidos,$imagename,$imagetmp){
         $dao = new PersonaDao();
 
-        $respuesta = $dao->actualizar($usuario, $celular, $direccion);
+        $respuesta = $dao->actualizar($usuario, $celular, $direccion,$apellidos,$imagename,$imagetmp);
         if ($respuesta == 0) {
             echo '<script> alert("Actualizacion Exitosa")</script>';
             header('Location: views/docente/editProfile.php');

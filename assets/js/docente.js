@@ -27,6 +27,24 @@ if(accion2!=null){
             document.getElementById("celular").innerText = ((data.persona.celular == "null") ? "" :data.persona.celular );
             document.getElementById("direccion").innerText = ((data.persona.direccion == "null") ? "" :data.persona.direccion );;
             document.getElementById("correo").innerText = ((data.persona.correo == "null") ? "" :data.persona.correo );
+            $('#imgD').attr('src',"data:image/jpeg;base64,"+ data.persona.foto);
+        }
+    });
+}
+
+var accion2000 = document.querySelector("#imagenDoc");
+if(accion2000!=null){
+   
+    $.ajax({
+        url:"../../include.php",
+        data:{solicitud:'imagenDoc'},
+        type:"post",
+        dataType:"json",
+        success:function(data){
+            $('#imagenDoc').attr('src',"data:image/jpeg;base64,"+ data.image_table[0].image);
+            
+
+            //document.getElementById("name").innerText = data.persona.nombres + " " + data.persona.apellidos;
         }
     });
 }
@@ -41,10 +59,27 @@ if(accion3!=null){
         success:function(data){
             document.querySelector("#cel").value = ((data.persona.celular == "null") ? "" :data.persona.celular );
             document.querySelector("#dir").value = ((data.persona.direccion == "null") ? "" :data.persona.direccion );
+            document.querySelector("#ape").value = data.persona.apellidos;
+            $('#imgD').attr('src',"data:image/jpeg;base64,"+ data.persona.foto);
         }
     });
 }
+function previewFile(){
 
+    var preview = document.querySelector('#imgD'); //selects the query named img
+    var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+    var reader  = new FileReader();
+
+    reader.onloadend = function () {
+        preview.src = reader.result;
+    }
+
+    if (file) {
+        reader.readAsDataURL(file); //reads the data as a URL
+    } else {
+        preview.src = "";
+    }
+}
 
 
 var accion4 = document.querySelector("#info");

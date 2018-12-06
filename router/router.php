@@ -57,6 +57,11 @@ class Router
                 $this->controllerDirector->buscarFoto($usuario);
             }
 
+            elseif ($_POST['solicitud'] == 'imagenDoc'){
+                $usuario = $_SESSION['docente'];
+                $this->controllerDirector->buscarFoto($usuario);
+            }
+
             
 
 
@@ -172,7 +177,20 @@ class Router
                 $usuario = $_SESSION['docente'];
                 $celular = $_POST['celular'];
                 $direccion = $_POST['direccion'];
-                $this->controllerDocente->actualizarPerfil($usuario, $celular, $direccion);
+                $apellidos = $_POST['apellidos'];
+
+                $imagename="";
+                $imagetmp="";
+
+                if($_FILES['foto']['size'] > 0){
+                    error_log("ENTROOOO");
+                    $imagename=$_FILES["foto"]["name"]; 
+                    //Get the content of the image and then add slashes to it 
+                    $imagetmp=addslashes (file_get_contents($_FILES['foto']['tmp_name']));
+                    error_log("PASSSSSOOO");
+                }
+                
+                $this->controllerDocente->actualizarPerfil($usuario, $celular, $direccion,$apellidos,$imagename,$imagetmp);
             }
 
             elseif ($_POST['solicitud'] == 'pairDoc'){
