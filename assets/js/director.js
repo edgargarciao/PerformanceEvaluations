@@ -2421,3 +2421,195 @@ function cambiarResultadosAutoevaluacionesProfesores(idPeriodo){
     });
 
 }
+
+
+/********************************************
+ *  REPORTE AUTOEVALUACIONES DOCENTES
+ ********************************************/
+
+var accion150 = document.querySelector("#periodo_list");
+if(accion150!=null) {
+    $.ajax({
+        url: "../../include.php",
+        data: {solicitud: 'periodolist'},
+        type: "post",
+        async:false,
+        success: function (response) {
+            var json = JSON.parse(response);
+            var respuesta = "";
+            var respuesta2 = "";
+            var respuesta3 = "";
+
+            if (json.length != 0) {
+                var t = $('#dataTables-example').DataTable();
+                t.clear().draw();
+                for (var i = 0; i < json.length; i++) {
+                   
+                    var Codigo = json[i].id;
+                    var Descripcion = json[i].descripcion;
+                    var fechaI = json[i].descripcion;
+                    var fechaF =  json[i].fechaF;
+
+
+                    respuesta3 += ' <a class="btn btn-default" data-toggle="modal" data-target="#myModal'+Codigo+'"> ';
+                    respuesta3 += 'Editar';
+                    respuesta3 += '</a> \n' ;
+                    respuesta3 += '<button id="hab'+Codigo+'" class="btn btn-success '+((json[i].estado == "Activo")?"disabled":"")+' " onclick="habilitarDocente(\''+Codigo+'\')">';
+                    respuesta3 += 'Habilitar';
+                    respuesta3 += '</button>  \n';
+                    respuesta3 += '<button id="deshab'+Codigo+'" class="btn btn-danger '+((json[i].estado == "Inactivo")?"disabled":"")+'" onclick="desHabilitarDocente(\''+Codigo+'\')">';
+                    respuesta3 += 'Deshabilitar';
+                    respuesta3 += '</button>';
+                    
+                    t.row.add([Codigo, Descripcion, fechaI, fechaF, respuesta3]).draw(false);
+                    respuesta2 = "";
+                    respuesta3 = "";
+                    respuesta = "";
+
+
+            var modals = document.getElementById("modals");
+
+
+            var div1 = document.createElement("DIV");
+            div1.setAttribute("id","myModal"+json[i].id);
+            div1.setAttribute("class","modal fade myModal");
+            div1.setAttribute("tabindex","-1");
+            div1.setAttribute("role","dialog");
+            div1.setAttribute("aria-labelledby","myModalLabel");
+            div1.setAttribute("aria-hidden","true");
+
+
+            var div2 = document.createElement("DIV");
+            div2.setAttribute("class","modal-dialog modal-dialog-centered");
+            
+            var div3 = document.createElement("DIV");
+            div3.setAttribute("class","modal-content");
+
+            var div4 = document.createElement("DIV");
+            div4.setAttribute("class","modal-header");
+            div4.setAttribute("style","display: block");
+            
+            div3.appendChild(div4);
+
+            var p1 = document.createElement("P");
+            p1.setAttribute("class","modal-tittle");
+            p1.setAttribute("style","display: block");
+
+            var textop1 = document.createTextNode("EDITAR CAMPOS");       
+            p1.appendChild(textop1);
+
+            div4.appendChild(p1);
+
+            var div5 = document.createElement("DIV");
+            div5.setAttribute("class","modal-body");                   
+
+            var label1 = document.createElement("LABEL");
+            label1.setAttribute("style","text-align: justify;padding-top: 0px;");
+            label1.setAttribute("class","login-box-msg");
+            var textolabel1 = document.createTextNode("Llena los campos a editar la información requerida");       
+            label1.appendChild(textolabel1);
+
+            div5.appendChild(label1);
+
+            div5.appendChild(document.createElement("BR"));
+            div5.appendChild(document.createElement("BR"));
+            div5.appendChild(document.createElement("BR"));
+
+            var div6 = document.createElement("DIV");
+            div6.setAttribute("class","row"); 
+            
+            var div7 = document.createElement("DIV");
+            div7.setAttribute("class","col-xs-12 col-sm-8 col-sm-offset-2"); 
+
+            var div8 = document.createElement("DIV");
+            div8.setAttribute("class","group-material"); 
+
+            var input1 = document.createElement("INPUT");
+            input1.setAttribute("class","material-control tooltips-general"); 
+            input1.setAttribute("id","txtnombre"+Codigo); 
+            input1.setAttribute("type","text"); 
+            input1.setAttribute("name","nombre"); 
+            input1.setAttribute("placeholder","Nombre del docente"); 
+            input1.setAttribute("data-toggle","tooltip");
+            input1.setAttribute("value",Descripcion);
+            
+            div8.appendChild(input1);
+
+            var span1 = document.createElement("SPAN");
+            span1.setAttribute("class","highlight"); 
+
+            div8.appendChild(span1);
+
+            var span2 = document.createElement("SPAN");
+            span2.setAttribute("class","bar"); 
+
+            div8.appendChild(span2);
+
+            var label2 = document.createElement("LABEL");
+            label2.setAttribute("style","text-align: justify;padding-top: 0px;");
+            label2.setAttribute("class","login-box-msg");
+            var textolabel2 = document.createTextNode("Nombre del docente");       
+            label2.appendChild(textolabel2);
+
+            div8.appendChild(label2);
+
+            div7.appendChild(div8);
+
+            var p2 = document.createElement("P");
+            p2.setAttribute("class","text-center");
+
+            var button1 = document.createElement("BUTTON");
+            button1.setAttribute("class","btn btn-danger");
+            //button1.setAttribute("type","submit");
+            
+
+            button1.setAttribute("onclick","actualizarDocente(\""+json[i].id+"\")");
+
+            var i1 = document.createElement("i");
+            i1.setAttribute("class","zmdi zmdi-floppy");
+
+            button1.appendChild(i1);
+
+            var i1 = document.createElement("i");
+            i1.setAttribute("class","zmdi zmdi-floppy");
+
+
+            var textobutton1 = document.createTextNode("Guardar");       
+            button1.appendChild(textobutton1);
+
+            p2.appendChild(button1);
+
+            var inputhidden = document.createElement("INPUT");
+            inputhidden.setAttribute("type","hidden");             
+            inputhidden.setAttribute("name","solicitud");
+            inputhidden.setAttribute("value","updateDocente");              
+            
+            p2.appendChild(inputhidden);
+
+            div7.appendChild(p2);
+
+            div6.appendChild(div7);
+
+            div5.appendChild(div6);
+
+            div3.appendChild(div5);
+
+            div2.appendChild(div3);
+
+            div1.appendChild(div2);
+
+
+            modals.appendChild(div1);
+
+        }
+                
+            }else{
+                var t = $('#dataTables-example').DataTable();
+                t.clear().draw();
+            }
+        }
+    });
+
+    modifyTable('dataTables-example');
+
+}

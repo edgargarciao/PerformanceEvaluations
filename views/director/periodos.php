@@ -65,7 +65,8 @@ if (!isset($_SESSION['director'])){
                                                 <table id="dataTables-example" class="table table-striped text-center" border="1"style="border: #8080802e 1px solid">
                                                     <thead>
                                                     <tr class="danger">
-                                                    <th class="text-center">Código de periodo</th>
+                                                        <th class="text-center">Código de periodo</th>
+                                                        <th class="text-center">Descripcion</th>
                                                         <th class="text-center">Fecha inicial</th>
                                                         <th class="text-center">Fecha final</th>
                                                         <th class="text-center">Acción</th>

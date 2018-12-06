@@ -361,8 +361,14 @@ class Router
                 $periodo = ($_POST['periodo']);             
                 $this->controllerDirector->obtenerAutoevaluacionDocente($periodo);
             }
+
+            elseif($_POST['solicitud'] == 'periodolist'){   
+                $periodo = ($_POST['periodo']);             
+                $this->controllerDirector->listarPeriodo();
+            }
             
 
+            
             else {
                 echo '<script> alert("No encontro la solicitud")</script>';
             }
