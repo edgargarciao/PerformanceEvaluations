@@ -82,7 +82,7 @@ if (!isset($_SESSION['director'])){
                                         </div>
 
                                         <div class="group-material">
-                                            <input type="file" name="foto" onchange="previewFile()" id="foto" class="material-control tooltips-general" placeholder="Apellidos" required="" data-toggle="tooltip">
+                                            <input type="file" name="foto" onchange="previewFile()" id="foto" class="material-control tooltips-general" placeholder="Apellidos" data-toggle="tooltip">
                                             <span class="highlight"></span>
                                             <span class="bar"></span>
                                             <label>Foto</label>
