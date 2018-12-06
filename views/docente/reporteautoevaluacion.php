@@ -9,7 +9,7 @@ if (!isset($_SESSION['docente'])){
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Performance Evaluations - Listado de Asignaturas</title>
+    <title>Performance Evaluations - Mis autoevaluaciones</title>
     <!-- Meta -->
    <?php include 'General/css.php';?>
 </head>
@@ -43,7 +43,7 @@ if (!isset($_SESSION['docente'])){
             </nav>
         </form>
         <div class="container nav-espacio">
-            <h1 class="all-tittles">Ver asignaturas</h1>
+            <h1 class="all-tittles">Ver mis autoevaluaciones</h1>
         </div>
         <section class="full-reset text-center">
             <div class="container-fluid"  style="margin: 0px 0;">
@@ -52,11 +52,11 @@ if (!isset($_SESSION['docente'])){
                         <img src="../../assets/imgs/viewSubject.png" alt="view" class="img-responsive center-box" style="max-width: 110px;">
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
-                        En esta sección puede visualizar la lista de asignaturas disponibles.
+                        En esta sección puede visualizar el resultado de sus autoevaluaciones por periodo.
                     </div>
                     <div class="container-fluid contai-espacio">
                         <div class="container-flat-form">
-                            <div class="title-flat-form title-flat-red">Asignaturas</div>
+                            <div class="title-flat-form title-flat-red">Mis autoevaluaciones</div>
                             <div class="container-fluid"  style="margin: 50px 0;">
                                 <div class="row">
 

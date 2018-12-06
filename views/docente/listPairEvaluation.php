@@ -9,7 +9,7 @@ if (!isset($_SESSION['docente'])){
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Performance Evaluations - Listado de Docentes</title>
+    <title>Performance Evaluations - Listado de evaluaciones</title>
     <?php include 'General/css.php';?>
 </head>
 <body>

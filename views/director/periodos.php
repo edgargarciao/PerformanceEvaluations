@@ -9,7 +9,7 @@ if (!isset($_SESSION['director'])){
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Performance Evaluations - Listado de Asignaturas</title>
+    <title>Performance Evaluations - Listado de periodos</title>
     <!-- Meta -->
    <?php include 'General/css.php';?>
 </head>
