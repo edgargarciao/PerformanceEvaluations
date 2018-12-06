@@ -66,10 +66,17 @@ class Router
                 $celular = $_POST['celular'];
                 $direccion = $_POST['direccion'];
                 $apellidos = $_POST['apellidos'];
-                $imagename=$_FILES["foto"]["name"]; 
-                //Get the content of the image and then add slashes to it 
-                $imagetmp=addslashes (file_get_contents($_FILES['foto']['tmp_name']));
-                
+
+                $imagename="";
+                $imagetmp="";
+
+                if($_FILES['foto']['size'] > 0){
+                    error_log("ENTROOOO");
+                    $imagename=$_FILES["foto"]["name"]; 
+                    //Get the content of the image and then add slashes to it 
+                    $imagetmp=addslashes (file_get_contents($_FILES['foto']['tmp_name']));
+                    error_log("PASSSSSOOO");
+                }
                 $this->controllerDirector->actualizarPerfil($usuario, $celular, $direccion,$apellidos,$imagename,$imagetmp);
             }
 
