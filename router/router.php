@@ -420,8 +420,13 @@ class Router
             }
 
             elseif ($_POST['solicitud'] == 'generate_pdf_rdd'){   
-                $periodo = 1;//($_POST['periodo']);
+                $periodo = ($_POST['per']);
                 $this->controllerDirector->pdfEvaluacionesDirectorProfesor($periodo);
+            }
+
+            elseif ($_POST['solicitud'] == 'generate_pdf_rpd'){   
+                $periodo = ($_POST['per']);
+                $this->controllerDirector->pdfEvaluacionesProfesorProfesor($periodo);
             }
 
             

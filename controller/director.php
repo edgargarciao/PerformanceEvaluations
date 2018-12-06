@@ -156,7 +156,7 @@ class Director{
         foreach($resultados as $item) { //foreach element in $arr
             $resultado = $resultado + ($item['valor'] * $valorItem);
         }
-
+        $resultado = $resultado / 10;
         $daoP = new PeriodoDao();
         $buscar_periodo = $daoP->buscarActual();
         $id_periodo = $buscar_periodo['id'];
@@ -207,7 +207,7 @@ class Director{
         foreach($resultados as $item) { //foreach element in $arr
             $resultado = $resultado + ($item['valor'] * $valorItem);
         }
-
+        $resultado = $resultado / 10;
         $daoP = new PeriodoDao();
         $buscar_periodo = $daoP->buscarActual();
         $id_periodo = $buscar_periodo['id'];
@@ -229,7 +229,7 @@ class Director{
         $valorPorcentual = 100/$numItem;
         $valorItem =$valorPorcentual/10;
         $resultado = $a * $valorItem + $b * $valorItem + $c * $valorItem + $d * $valorItem + $e * $valorItem + $f * $valorItem + $g * $valorItem + $h * $valorItem + $i * $valorItem + $j * $valorItem + $k * $valorItem;
-
+        $resultado = $resultado / 10;
         $daoP = new PeriodoDao();
         $buscar_periodo = $daoP->buscarActual();
         $id_periodo = $buscar_periodo['id'];
@@ -323,6 +323,11 @@ class Director{
     public function pdfEvaluacionesDirectorProfesor($periodo){
         $dao = new DocenteDao();
         $dao->pdfEvaluacionesDirectorProfesor($periodo);
+    }
+
+    public function pdfEvaluacionesProfesorProfesor($periodo){
+        $dao = new DocenteDao();
+        $dao->pdfEvaluacionesProfesorProfesor($periodo);
     }
 }
 ?>

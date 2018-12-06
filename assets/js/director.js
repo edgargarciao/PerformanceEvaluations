@@ -2279,11 +2279,12 @@ if(accion77!=null) {
     colocarPeriodos("cambiarResultadosDirectorProfesor");
     var e = document.getElementById("periodoList");
     var  valuePeriodo = e.options[e.selectedIndex].value;
+
     cambiarResultadosDirectorProfesor(valuePeriodo);
 }
 
 function cambiarResultadosDirectorProfesor(idPeriodo){
-
+    document.getElementById("per").value = idPeriodo;
 
     $.ajax({
         url: "../../include.php",
@@ -2358,6 +2359,8 @@ if(accion778!=null) {
 }
 
 function cambiarResultadosProfesorProfesor(idPeriodo){
+
+    document.getElementById("per").value = idPeriodo;
 
     $.ajax({
         url: "../../include.php",

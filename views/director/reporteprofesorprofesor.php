@@ -89,6 +89,12 @@ if (!isset($_SESSION['director'])){
                                                 </table>
                                             </div>
                                         </div>
+                                        <form class="form-inline" action="../../include.php" method="post">
+                                            <input type="hidden" name="solicitud" value="generate_pdf_rpd">
+                                            <input type="hidden" id = "per" name="per" value="1">
+                                            <button type="submit" id="pdf" name="generate_pdf" class="btn btn-primary"><i class="fa fa-pdf" aria-hidden="true"></i>
+                                            Generate PDF</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
