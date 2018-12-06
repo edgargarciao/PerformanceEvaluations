@@ -446,3 +446,71 @@ function guardarAutoEvaluacionDirector(){
 }
 
 
+
+/********************************************
+ *  AUTOEVALUACION DOCENTE
+ ********************************************/
+
+function cargarAutoevaluacionDocente(){
+
+    colocarPeriodos("cambiarResultadosAutoevaluacionDocente");
+    var e = document.getElementById("periodoList");
+    var  valuePeriodo = e.options[e.selectedIndex].value;
+    cambiarResultadosAutoevaluacionDocente(valuePeriodo);
+
+}
+
+function cambiarResultadosAutoevaluacionDocente(idPeriodo){
+
+    $.ajax({
+        url: "../../include.php",
+        data: {solicitud: 'autoevaluacionDocente', periodo:idPeriodo},
+        type: "post",
+        async:false,
+        success: function (response) {
+            var json = JSON.parse(response);
+            var x = document.getElementById("nota");
+            if (json.length != 0) {
+                
+                
+                x.setAttribute("value",json[0].resultado);
+
+            }else{
+                x.setAttribute("value","Aún no ha presentado la autoevaluación");
+            }
+        }
+    });
+}
+
+function colocarPeriodos(func){
+
+    $.ajax({
+        url: "../../include.php",
+        data: {solicitud: 'obtenerPeriodos'},
+        type: "post",
+        async:false,
+        success: function (response) {
+            var json = JSON.parse(response);
+            var respuesta = "";
+            var respuesta2 = "";
+
+            if (json.length != 0) {
+
+                for (var i = 0; i < json.length; i++) {
+                    var Codigo = json[i].id;
+                    var Nombre = json[i].descripcion;
+                    var FechaInicial = json[i].fechaI;
+                    var FechaFinal = json[i].fechaF;
+
+                    var x = document.getElementById("periodoList");
+                    var option = document.createElement("option");
+                    option.text = Nombre;
+                    option.setAttribute("value",Codigo);
+                    option.setAttribute("onclick",func+"("+Codigo+")");
+                    x.add(option); 
+                }
+            }
+
+        }
+    });
+}

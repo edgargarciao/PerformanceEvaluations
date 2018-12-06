@@ -339,5 +339,40 @@ class DocenteDao {
         }
         return ($array);
     }
+
+    public function obtenerAutoevaluacionDocente($periodo){
+        $cod = "";
+        if(isset($_SESSION['director'])){
+            $cod = $_SESSION['director'];
+        }elseif(isset($_SESSION['docente'])){
+            $cod = $_SESSION['docente'];
+        }
+
+        $query = "  SELECT  evaluacion.resultado 
+                    FROM evaluacion
+                    WHERE evaluacion.id_tipo_evaluacion = 3
+                    AND evaluacion.id_periodo = $periodo
+                    AND evaluacion.profesor_desde = $cod";
+                    //group by docente.codigo";
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        $array = array();
+
+        if(isset($respuesta) && $respuesta->num_rows>0){
+        while($row = mysqli_fetch_array($respuesta)){
+            array_unshift($array, $row);
+        }
+        }
+        return ($array);
+    }
+
+
+
+
+
+
+
 }
 ?>
+

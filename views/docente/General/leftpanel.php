@@ -20,5 +20,15 @@
                             <li><a href="selfEvaluation.php" style="color: black"><i class="zmdi zmdi-account zmdi-hc-fw"></i>&nbsp;&nbsp;Realizar Auto-evaluación</a></li>
                         </ul>
                     </li>
+
+                     <li>
+                        <div class="dropdown-menu-button"><i class="zmdi zmdi-chart zmdi-hc-fw"></i>&nbsp;&nbsp;Reportes<i class="zmdi zmdi-chevron-down pull-right zmdi-hc-fw"></i></div>
+                        <ul class="list-unstyled">                            
+                            <li><a href="reporteprofesorprofesor.php" style="color: black"><i class="zmdi zmdi-account zmdi-hc-fw"></i>&nbsp;&nbsp;Reporte docente-docente</a></li>                            
+                            <li><a href="reporteautoevaluacion.php" style="color: black"><i class="zmdi zmdi-male zmdi-hc-fw"></i>&nbsp;&nbsp;Mis autoevaluaciones</a></li>                            
+                        </ul>
+                    </li>
+
+
                 </ul>
             </div>
