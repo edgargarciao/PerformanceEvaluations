@@ -2424,7 +2424,7 @@ function cambiarResultadosAutoevaluacionesProfesores(idPeriodo){
 
 
 /********************************************
- *  REPORTE AUTOEVALUACIONES DOCENTES
+ *  PERIODOS
  ********************************************/
 
 var accion150 = document.querySelector("#periodo_list");
@@ -2441,8 +2441,8 @@ if(accion150!=null) {
             var respuesta3 = "";
 
             if (json.length != 0) {
-                var t = $('#dataTables-example').DataTable();
-                t.clear().draw();
+                var t = $('#dataTables-example').DataTable({ "bDestroy": true});
+                
                 for (var i = 0; i < json.length; i++) {
                    
                     var Codigo = json[i].id;
