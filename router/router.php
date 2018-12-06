@@ -419,7 +419,12 @@ class Router
                 $this->controllerDirector->actualizarPeriodo($codigo,$descripcion,$fechaI,$fechaF);
             }
 
+            elseif ($_POST['solicitud'] == 'generate_pdf_rdd'){   
+                $periodo = 1;//($_POST['periodo']);
+                $this->controllerDirector->pdfEvaluacionesDirectorProfesor($periodo);
+            }
 
+            
             else {
                 echo '<script> alert("No encontro la solicitud")</script>';
             }

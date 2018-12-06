@@ -319,5 +319,10 @@ class Director{
             echo json_encode($response);
         }
     }
+
+    public function pdfEvaluacionesDirectorProfesor($periodo){
+        $dao = new DocenteDao();
+        $dao->pdfEvaluacionesDirectorProfesor($periodo);
+    }
 }
 ?>

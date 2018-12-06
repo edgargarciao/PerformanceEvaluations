@@ -1,4 +1,9 @@
 <?php
+
+    include_once 'libs/fpdf/fpdf.php';
+ 
+
+
     include_once 'controller/director.php';
     include_once 'controller/docente.php';
     include_once 'controller/estudiante.php';
@@ -14,6 +19,7 @@
     include_once 'dao/usuarioDao.php';
     include_once 'dao/criterioDao.php';
 
+    include_once 'dto/PDF.php';
     include_once 'dto/docenteDto.php';
     include_once 'dto/evaluacionDto.php';
     include_once 'dto/evaluacionDocenteDto.php';
