@@ -56,7 +56,7 @@ if (!isset($_SESSION['director'])){
                     </div>
                     <div class="container-fluid contai-espacio">
                         <div class="container-flat-form">
-                            <div class="title-flat-form title-flat-red">Autoevaluaciones de los docente</div>
+                            <div class="title-flat-form title-flat-red">Autoevaluaciones de los docentes</div>
                             <div class="container-fluid"  style="margin: 50px 0;">
                                 <div class="row">
 
