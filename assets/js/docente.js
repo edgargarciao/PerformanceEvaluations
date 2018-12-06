@@ -514,3 +514,44 @@ function colocarPeriodos(func){
         }
     });
 }
+
+/********************************************
+ *  REPORTE DOCENTE DOCENTE
+ ********************************************/
+
+var accion77 = document.querySelector("#reporteDocenteProfesor");
+if(accion77!=null) {
+
+    colocarPeriodos("cambiarResultadosDirectorDocente");
+    var e = document.getElementById("periodoList");
+    var  valuePeriodo = e.options[e.selectedIndex].value;
+    cambiarResultadosDirectorDocente(valuePeriodo);
+}
+
+function cambiarResultadosDirectorDocente(idPeriodo){
+
+
+    $.ajax({
+        url: "../../include.php",
+        data: {solicitud: 'evaluacionesDocenteDocente', periodo:idPeriodo},
+        type: "post",
+        async:false,
+        success: function (response) {
+            var json = JSON.parse(response);
+
+            if (json.length != 0) {
+                var t = $('#dataTables-example').DataTable({ "bDestroy": true});
+                
+                for (var i = 0; i < json.length; i++) {
+                    var Nombre = json[i].nombres + " " + ((json[i].apellidos == "null")?"":json[i].apellidos);
+                    var resultado = json[i].resultado;
+                    t.row.add([Nombre, resultado]).draw(false);
+                }
+            }else{
+                var t = $('#dataTables-example').DataTable({ "bDestroy": true});
+                
+            }
+        }
+    });
+
+}

@@ -260,5 +260,10 @@ class Director{
         $dao = new DocenteDao();
         echo json_encode($dao->obtenerAutoevaluacionDocente($periodo));
     }
+
+    public function listarEvaluacionesDocenteDocente($periodo){
+        $dao = new DocenteDao();
+        echo json_encode($dao->listarEvaluacionesDocenteDocente($periodo));
+    }
 }
 ?>

@@ -72,7 +72,7 @@ if (!isset($_SESSION['director'])){
                                     </div>
 
                                     <div class="group-material">                                                                                  
-                                        <select class="form-control" id="periodoList">
+                                        <select onchange="cambiarResultadosAutoevaluacionDirector(this.value); this.selectedindex = -1" class="form-control" id="periodoList">
                                           <!--  <option value="1">I-2017</option>
                                             <option value="2">II-2017</option>
                                             <option value="3">I-2018</option>

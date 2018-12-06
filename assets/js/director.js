@@ -2382,7 +2382,7 @@ function cambiarResultadosAutoevaluacionDirector(idPeriodo){
 
 
 /********************************************
- *  REPORTE DOCENTE DOCENTE
+ *  REPORTE AUTOEVALUACIONES DOCENTES
  ********************************************/
 
 var accion778 = document.querySelector("#reporteAutoevaluacionesProfesores");

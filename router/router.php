@@ -338,6 +338,12 @@ class Router
                 $this->controllerDirector->listarEvaluacionesDirectorProfesor($periodo);
             }
 
+            elseif($_POST['solicitud'] == 'evaluacionesDocenteDocente'){
+
+                $periodo = ($_POST['periodo']);
+                $this->controllerDirector->listarEvaluacionesDocenteDocente($periodo);
+            }
+
             elseif($_POST['solicitud'] == 'evaluacionesProfesorProfesor'){
                 $periodo = ($_POST['periodo']);
                 $this->controllerDirector->listarEvaluacionesProfesorProfesor($periodo);
