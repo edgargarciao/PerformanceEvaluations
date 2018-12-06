@@ -84,6 +84,23 @@ if(accion3!=null){
     });
 }
 
+function previewFile(){
+    alert("aaaa");
+    var preview = document.querySelector('#imgD'); //selects the query named img
+    var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+    var reader  = new FileReader();
+
+    reader.onloadend = function () {
+        preview.src = reader.result;
+    }
+
+    if (file) {
+        reader.readAsDataURL(file); //reads the data as a URL
+    } else {
+        preview.src = "";
+    }
+}
+
 var accion4 = document.querySelector("#edit_profile");
 if(accion4!=null){
     $.ajax({
@@ -96,10 +113,6 @@ if(accion4!=null){
             document.querySelector("#dir").value = data.persona.direccion;
             document.querySelector("#ape").value = data.persona.apellidos;
             $('#imgD').attr('src',"data:image/jpeg;base64,"+ data.persona.foto);
-            
-            
-
-
         }
     });
 }
