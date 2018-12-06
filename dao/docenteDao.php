@@ -249,15 +249,25 @@ class DocenteDao {
             $cod = $_SESSION['docente'];
         }
 
-        $query = "   SELECT  evaluaciondocente.codigo_docente nombres, (SUM(CAST(evaluacion.resultado AS UNSIGNED INTEGER))/ count(1)) resultado
-                    FROM persona, docente, usuario, evaluacion, evaluaciondocente 
-                    WHERE persona.dni = docente.id_persona 
-                    AND usuario.usuario = docente.codigo  
-                    AND evaluacion.id = evaluaciondocente.id_evaluacion
-                    AND evaluaciondocente.codigo_docente = docente.codigo
-                    AND evaluacion.id_tipo_evaluacion = 2
-                    AND evaluacion.id_periodo = $periodo
-                    group by evaluaciondocente.codigo_docente";
+        $query = "   SELECT  evaluaciondocente.codigo_docente codigo,  (SUM(CAST(evaluacion.resultado AS UNSIGNED INTEGER))/ count(1)) resultado, 
+        (SELECT persona.nombres
+                          FROM persona 
+                          INNER JOIN docente ON persona.dni = docente.id_persona 
+                          INNER JOIN usuario ON usuario.usuario = docente.codigo
+                          WHERE docente.codigo = evaluaciondocente.codigo_docente ) nombres,
+                          (SELECT persona.apellidos
+                          FROM persona 
+                          INNER JOIN docente ON persona.dni = docente.id_persona 
+                          INNER JOIN usuario ON usuario.usuario = docente.codigo
+                          WHERE docente.codigo = evaluaciondocente.codigo_docente ) apellidos
+                            FROM persona, docente, usuario, evaluacion, evaluaciondocente 
+                            WHERE persona.dni = docente.id_persona 
+                            AND usuario.usuario = docente.codigo  
+                            AND evaluacion.id = evaluaciondocente.id_evaluacion
+                            AND evaluaciondocente.codigo_docente = docente.codigo
+                            AND evaluacion.id_tipo_evaluacion = 2
+                            AND evaluacion.id_periodo = $periodo
+                            group by evaluaciondocente.codigo_docente";
                     //group by docente.codigo";
         $this->model->conexion();
         $respuesta = $this->model->query($query);

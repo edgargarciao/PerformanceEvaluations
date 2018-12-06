@@ -81,8 +81,7 @@ if (!isset($_SESSION['director'])){
                                     </div>
                                             <div id = "reporteAutoevaluacionesProfesores" method="post">
                                                 <table id="dataTables-example" class="table table-striped text-center" border="1"style="border: #8080802e 1px solid">
-                                                    <thead>
-                                                   
+                                                    <thead>                                                    
                                                     <th class="text-center">Nombre del profesor</th>
                                                     <th class="text-center">Nota</th>                                                        
                                                     </tr>

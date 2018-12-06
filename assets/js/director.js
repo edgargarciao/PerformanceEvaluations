@@ -2262,7 +2262,7 @@ function cambiarResultadosDirectorProfesor(idPeriodo){
             }else{
                 var t = $('#dataTables-example').DataTable();
                 t.clear().draw();
-                alert("No hay evaluaciones aun realizadas.");
+                
             }
         }
     });
@@ -2329,14 +2329,15 @@ function cambiarResultadosProfesorProfesor(idPeriodo){
                 var t = $('#dataTables-example').DataTable({ "bDestroy": true});
                 
                 for (var i = 0; i < json.length; i++) {
+                    var Codigo = json[i].codigo;
                     var Nombre = json[i].nombres + " " + ((json[i].apellidos == "null")?"":json[i].apellidos);
                     var resultado = json[i].resultado;
-                    t.row.add([Nombre, resultado]).draw(false);
+                    t.row.add([Codigo, Nombre, resultado]).draw(false);
                 }
             }else{
                 var t = $('#dataTables-example').DataTable();
                 t.clear().draw();
-                alert("No hay evaluaciones aun realizadas.");
+               
             }
         }
     });
@@ -2414,7 +2415,7 @@ function cambiarResultadosAutoevaluacionesProfesores(idPeriodo){
             }else{
                 var t = $('#dataTables-example').DataTable();
                 t.clear().draw();
-                alert("No hay evaluaciones aun realizadas.");
+                
             }
         }
     });
