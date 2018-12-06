@@ -9,11 +9,17 @@ class Director{
         echo json_encode($dao->buscar($usuario),JSON_FORCE_OBJECT);
     }
 
+    public function buscarFoto($usuario){
+        $dao = new PersonaDao();
+        $dao->buscarFoto($usuario);
+    }
+    
+
     //Metodo de actualizar perfil de director
-    public function actualizarPerfil($usuario, $celular, $direccion){
+    public function actualizarPerfil($usuario, $celular, $direccion,$apellidos,$imagename,$imagetmp){
         $dao = new PersonaDao();
 
-        $respuesta = $dao->actualizar($usuario, $celular, $direccion);
+        $respuesta = $dao->actualizar($usuario, $celular, $direccion,$apellidos,$imagename,$imagetmp);
         if ($respuesta == 0) {
             echo '<script> alert("Actualizacion Exitosa")</script>';
             header('Location: views/director/editProfile.php');

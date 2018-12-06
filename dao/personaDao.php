@@ -19,8 +19,8 @@ class PersonaDao{
         return 1;
     }
 
-    public function actualizar($dni, $celular, $direccion){
-        $query = "UPDATE persona SET celular = '".$celular."', direccion = '".$direccion."' WHERE dni = (SELECT dni FROM (SELECT persona.dni FROM persona, docente WHERE docente.codigo = '".$dni."' AND persona.dni = docente.id_persona) AS alias_persona)";
+    public function actualizar($dni, $celular, $direccion,$apellidos,$imagename,$imagetmp){
+        $query = "UPDATE persona SET celular = '".$celular."', direccion = '".$direccion."'      , nomimg = '".$imagename."' , foto = '".$imagetmp."'       WHERE dni = (SELECT dni FROM (SELECT persona.dni FROM persona, docente WHERE docente.codigo = '".$dni."' AND persona.dni = docente.id_persona) AS alias_persona)";
         $this->model->conexion();
         $respuesta = $this->model->query($query);
         $this->model->closeConexion();
@@ -46,7 +46,7 @@ class PersonaDao{
     }
 
     public function buscar($usuario){
-        $query = "SELECT persona.dni, persona.nombres, persona.apellidos, persona.celular, persona.direccion, persona.correo, docente.codigo FROM persona INNER JOIN docente ON docente.codigo = '".$usuario."' AND docente.id_persona = persona.dni";
+        $query = "SELECT persona.dni, persona.nombres, persona.apellidos, persona.celular, persona.direccion, persona.correo, docente.codigo, persona.foto foto FROM persona INNER JOIN docente ON docente.codigo = '".$usuario."' AND docente.id_persona = persona.dni";
         $this->model->conexion();
         $respuesta = $this->model->query($query);
         $this->model->closeConexion();
@@ -64,12 +64,46 @@ class PersonaDao{
             $persona['direccion'] = $row['direccion'];
             $persona['correo'] = $row['correo'];
             $persona['codigo'] = $row['codigo'];
+            $persona['foto'] = base64_encode($row['foto']);
 
             $json_data['persona'] = $persona;
         }else{
             $json_data['success'] = 1;
         }
         return $json_data;
+    }
+
+    public function buscarFoto($usuario){
+        $query = "SELECT persona.foto foto FROM persona INNER JOIN docente ON docente.codigo = '".$usuario."' AND docente.id_persona = persona.dni";
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        $json_data = array();
+
+        if(isset($respuesta) && $respuesta->num_rows>0){
+            $result = mysqli_fetch_array($respuesta);
+
+        $user = array();
+        $user["image"] = base64_encode($result["foto"]);
+        $response["success"] = 1;
+       $response["image_table"] = array();
+
+        array_push($response["image_table"], $user);
+        echo json_encode($response);
+
+            /*$json_data['success'] = 0;
+
+            $row = mysqli_fetch_array($respuesta);
+
+            $json['Image_Urls'][]=$row;
+            $json_data['foto'] = $row['foto'];
+            
+            header('Content-Type:image/jpeg'); 
+            echo $row['foto']; */
+        }else{
+            $json_data['success'] = 1;
+        }
+        //return $json_data;
     }
 
     public function existencia($dni){

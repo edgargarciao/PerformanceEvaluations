@@ -61,7 +61,7 @@ if (!isset($_SESSION['director'])){
                             <div class="title-flat-form title-flat-red">Información Personal</div>
                             <div class="container-fluid">
                                 <div class="col-xs-2 col-sm-4 col-md-2">
-                                    <img src="../../assets/imgs/user2.png" alt="user" class="img-responsive center-box" style="max-width: 110px; padding-top: 100px">
+                                    <img id="imgD" src="../../assets/imgs/user2.png" alt="user" class="img-responsive center-box" style="max-width: 110px; padding-top: 100px">
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-8 col-xs-9">

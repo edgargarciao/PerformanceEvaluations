@@ -42,6 +42,26 @@ if(accion2!=null){
     });
 }
 
+
+var accion2000 = document.querySelector("#imagenDir");
+if(accion2000!=null){
+   
+    $.ajax({
+        url:"../../include.php",
+        data:{solicitud:'imagenDir'},
+        type:"post",
+        dataType:"json",
+        success:function(data){
+            $('#imagenDir').attr('src',"data:image/jpeg;base64,"+ data.image_table[0].image);
+            
+
+            //document.getElementById("name").innerText = data.persona.nombres + " " + data.persona.apellidos;
+        }
+    });
+}
+
+
+
 var accion3 = document.querySelector("#view_profile");
 if(accion3!=null){
     $.ajax({
@@ -57,6 +77,9 @@ if(accion3!=null){
             document.getElementById("celular").innerText = data.persona.celular;
             document.getElementById("direccion").innerText = data.persona.direccion;
             document.getElementById("correo").innerText = data.persona.correo;
+            $('#imgD').attr('src',"data:image/jpeg;base64,"+ data.persona.foto);
+
+            
         }
     });
 }
@@ -71,6 +94,12 @@ if(accion4!=null){
         success:function(data){
             document.querySelector("#cel").value = data.persona.celular;
             document.querySelector("#dir").value = data.persona.direccion;
+            document.querySelector("#ape").value = data.persona.apellidos;
+            $('#imgD').attr('src',"data:image/jpeg;base64,"+ data.persona.foto);
+            
+            
+
+
         }
     });
 }

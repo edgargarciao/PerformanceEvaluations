@@ -59,7 +59,7 @@ if (!isset($_SESSION['director'])){
                         <div class="title-flat-form title-flat-red">Editar Información</div>
                         <div class="container-fluid">
                             <!--Formulario de edit profile director-->
-                            <form id="edit_profile" action="../../include.php" method="post" autocomplete="off" >
+                            <form id="edit_profile" action="../../include.php" method="post" autocomplete="off" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
                                         <div class="group-material">
@@ -86,7 +86,12 @@ if (!isset($_SESSION['director'])){
                                             <span class="highlight"></span>
                                             <span class="bar"></span>
                                             <label>Foto</label>
-                                        </div>                                        
+                                            
+                                            <img id="imgD" src="../../assets/imgs/user2.png" alt="user" class="img-responsive center-box" style="max-width: 110px; padding-top: 100px">
+                                            
+                                        </div>                 
+
+
                                         <p class="text-center">
                                             <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i>&nbsp;&nbsp;Guardar</button>
                                             <!-- Router -->

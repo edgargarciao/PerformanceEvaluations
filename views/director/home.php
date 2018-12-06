@@ -49,7 +49,7 @@ if (!isset($_SESSION['director'])){
             <div class="container-fluid container-espacio">
                 <div class="row">
                     <div class="col-xs-12 col-sm-4 col-md-3">
-                        <img src="../../assets/imgs/user2.png" alt="user" class="img-responsive center-box" style="max-width: 110px;">
+                        <img id="imagenDir" src="../../assets/imgs/user2.png" alt="user" class="img-responsive center-box" style="max-width: 110px;">
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-8 text-left lead">
                         Bienvenido a la sección de director del departamento, acá podrá realizar sus respectivas evaluaciones y modificaciones de datos.
