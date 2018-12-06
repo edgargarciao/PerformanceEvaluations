@@ -2317,10 +2317,87 @@ if(accion778!=null) {
 
 function cambiarResultadosProfesorProfesor(idPeriodo){
 
-
     $.ajax({
         url: "../../include.php",
         data: {solicitud: 'evaluacionesProfesorProfesor', periodo:idPeriodo},
+        type: "post",
+        async:false,
+        success: function (response) {
+            var json = JSON.parse(response);
+
+            if (json.length != 0) {
+                var t = $('#dataTables-example').DataTable({ "bDestroy": true});
+                
+                for (var i = 0; i < json.length; i++) {
+                    var Nombre = json[i].nombres + " " + ((json[i].apellidos == "null")?"":json[i].apellidos);
+                    var resultado = json[i].resultado;
+                    t.row.add([Nombre, resultado]).draw(false);
+                }
+            }else{
+                var t = $('#dataTables-example').DataTable();
+                t.clear().draw();
+                alert("No hay evaluaciones aun realizadas.");
+            }
+        }
+    });
+
+}
+
+
+/********************************************
+ *  AUTOEVALUACION DIRECTOR
+ ********************************************/
+
+function cargarAutoevaluacionDirector(){
+
+    colocarPeriodos("cambiarResultadosAutoevaluacionDirector");
+    var e = document.getElementById("periodoList");
+    var  valuePeriodo = e.options[e.selectedIndex].value;
+    cambiarResultadosAutoevaluacionDirector(valuePeriodo);
+
+}
+
+function cambiarResultadosAutoevaluacionDirector(idPeriodo){
+
+    $.ajax({
+        url: "../../include.php",
+        data: {solicitud: 'autoevaluacionDirector', periodo:idPeriodo},
+        type: "post",
+        async:false,
+        success: function (response) {
+            var json = JSON.parse(response);
+            var x = document.getElementById("nota");
+            if (json.length != 0) {
+                
+                
+                x.setAttribute("value",json[0].resultado);
+
+            }else{
+                x.setAttribute("value","Aún no ha presentado la autoevaluación");
+            }
+        }
+    });
+}
+
+
+/********************************************
+ *  REPORTE DOCENTE DOCENTE
+ ********************************************/
+
+var accion778 = document.querySelector("#reporteAutoevaluacionesProfesores");
+if(accion778!=null) {
+
+    colocarPeriodos("cambiarResultadosAutoevaluacionesProfesores");
+    var e = document.getElementById("periodoList");
+    var  valuePeriodo = e.options[e.selectedIndex].value;
+    cambiarResultadosAutoevaluacionesProfesores(valuePeriodo);
+}
+
+function cambiarResultadosAutoevaluacionesProfesores(idPeriodo){
+
+    $.ajax({
+        url: "../../include.php",
+        data: {solicitud: 'autoevaluacionesProfesores', periodo:idPeriodo},
         type: "post",
         async:false,
         success: function (response) {

@@ -79,7 +79,7 @@ if (!isset($_SESSION['director'])){
                                             <option value="4">I-2018</option>-->
                                         </select>                                      
                                     </div>
-                                            <div id = "reporteDirectorProfesor" method="post">
+                                            <div id = "reporteAutoevaluacionesProfesores" method="post">
                                                 <table id="dataTables-example" class="table table-striped text-center" border="1"style="border: #8080802e 1px solid">
                                                     <thead>
                                                    

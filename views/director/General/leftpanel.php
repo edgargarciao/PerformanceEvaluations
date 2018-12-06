@@ -51,8 +51,8 @@
                         <ul class="list-unstyled">
                             <li><a href="reportedirectorprofesor.php" style="color: black"><i class="zmdi zmdi-account zmdi-hc-fw"></i>&nbsp;&nbsp;Reporte director-docente</a></li>
                             <li><a href="reporteprofesorprofesor.php" style="color: black"><i class="zmdi zmdi-account zmdi-hc-fw"></i>&nbsp;&nbsp;Reporte docente-docente</a></li>
-                            <li><a href="reporteautoevaluacionprofesor.php" style="color: black"><i class="zmdi zmdi-account zmdi-hc-fw"></i>&nbsp;&nbsp;Autoevaluaciones a docentes</a></li>                            
-                            <li><a href="reporteautoevaluacion.php" style="color: black"><i class="zmdi zmdi-male zmdi-hc-fw"></i>&nbsp;&nbsp;Autoevaluacion personal</a></li>                            
+                            <li><a href="reporteautoevaluacionprofesor.php" style="color: black"><i class="zmdi zmdi-account zmdi-hc-fw"></i>&nbsp;&nbsp;Autoevaluaciones de docentes</a></li>                            
+                            <li><a href="reporteautoevaluacion.php" style="color: black"><i class="zmdi zmdi-male zmdi-hc-fw"></i>&nbsp;&nbsp;Mis autoevaluaciones</a></li>                            
                         </ul>
                     </li>
 

@@ -79,18 +79,8 @@ if (!isset($_SESSION['director'])){
                                             <option value="4">I-2018</option>-->
                                         </select>                                      
                                     </div>
-                                            <div id = "reporteDirectorProfesor" method="post">
-                                                <table id="dataTables-example" class="table table-striped text-center" border="1"style="border: #8080802e 1px solid">
-                                                    <thead>
-                                                   
-                                                    <th class="text-center">Nombre del profesor</th>
-                                                    <th class="text-center">Nota</th>                                                        
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody id="tb">
-
-                                                    </tbody>
-                                                </table>
+                                            <div id = "reporteAutoevaluacionDirector" method="post">
+                                                NOTA: <input type="text" size="30" id="nota" readonly><br>
                                             </div>
                                         </div>
                                     </div>
@@ -127,5 +117,9 @@ if (!isset($_SESSION['director'])){
     <script src="../../assets/js/main.js"></script>
     <!-- Fonts js -->
     <script src="../../assets/js/director.js"></script>
+
+    <?php 
+        echo '<script type="text/javascript"> cargarAutoevaluacionDirector(); </script>';
+    ?>
 </body>
 </html>

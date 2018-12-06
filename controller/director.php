@@ -245,5 +245,17 @@ class Director{
         $dao = new DocenteDao();
         echo json_encode($dao->listarEvaluacionesProfesorProfesor($periodo));
     }
+
+    public function obtenerAutoevaluacionDirector($periodo){
+        $dao = new DocenteDao();
+        echo json_encode($dao->obtenerAutoevaluacionDirector($periodo));
+    }
+
+    public function listarAutoevaluacionesProfesores($periodo){
+        $dao = new DocenteDao();
+        echo json_encode($dao->listarAutoevaluacionesProfesores($periodo));
+    }
+    
+    
 }
 ?>

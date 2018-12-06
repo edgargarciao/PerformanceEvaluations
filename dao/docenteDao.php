@@ -249,7 +249,7 @@ class DocenteDao {
             $cod = $_SESSION['docente'];
         }
 
-        $query = "  SELECT docente.codigo, persona.nombres, persona.apellidos, persona.celular, persona.direccion, persona.correo, docente.id_departamento, usuario.estado, evaluacion.resultado 
+        $query = "   SELECT  evaluaciondocente.codigo_docente nombres, (SUM(CAST(evaluacion.resultado AS UNSIGNED INTEGER))/ count(1)) resultado
                     FROM persona, docente, usuario, evaluacion, evaluaciondocente 
                     WHERE persona.dni = docente.id_persona 
                     AND usuario.usuario = docente.codigo  
@@ -257,7 +257,65 @@ class DocenteDao {
                     AND evaluaciondocente.codigo_docente = docente.codigo
                     AND evaluacion.id_tipo_evaluacion = 2
                     AND evaluacion.id_periodo = $periodo
+                    group by evaluaciondocente.codigo_docente";
+                    //group by docente.codigo";
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        $array = array();
+
+        if(isset($respuesta) && $respuesta->num_rows>0){
+        while($row = mysqli_fetch_array($respuesta)){
+            array_unshift($array, $row);
+        }
+        }
+        return ($array);
+    }
+
+    public function obtenerAutoevaluacionDirector($periodo){
+        $cod = "";
+        if(isset($_SESSION['director'])){
+            $cod = $_SESSION['director'];
+        }elseif(isset($_SESSION['docente'])){
+            $cod = $_SESSION['docente'];
+        }
+
+        $query = "  SELECT  evaluacion.resultado 
+                    FROM evaluacion
+                    WHERE evaluacion.id_tipo_evaluacion = 4
+                    AND evaluacion.id_periodo = $periodo
                     AND evaluacion.profesor_desde = $cod";
+                    //group by docente.codigo";
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        $array = array();
+
+        if(isset($respuesta) && $respuesta->num_rows>0){
+        while($row = mysqli_fetch_array($respuesta)){
+            array_unshift($array, $row);
+        }
+        }
+        return ($array);
+    }
+
+
+    public function listarAutoevaluacionesProfesores($periodo){
+
+        $cod = "";
+        if(isset($_SESSION['director'])){
+            $cod = $_SESSION['director'];
+        }elseif(isset($_SESSION['docente'])){
+            $cod = $_SESSION['docente'];
+        }
+
+        $query = "  SELECT docente.codigo, persona.nombres, persona.apellidos, persona.celular, persona.direccion, persona.correo, docente.id_departamento, usuario.estado, evaluacion.resultado 
+                    FROM persona, docente, usuario, evaluacion 
+                    WHERE persona.dni = docente.id_persona 
+                    AND usuario.usuario = docente.codigo  
+                    AND evaluacion.profesor_desde = docente.codigo
+                    AND evaluacion.id_tipo_evaluacion = 3
+                    AND evaluacion.id_periodo = $periodo";
                     //group by docente.codigo";
         $this->model->conexion();
         $respuesta = $this->model->query($query);

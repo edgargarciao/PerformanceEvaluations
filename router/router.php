@@ -342,6 +342,18 @@ class Router
                 $periodo = ($_POST['periodo']);
                 $this->controllerDirector->listarEvaluacionesProfesorProfesor($periodo);
             }
+
+            elseif($_POST['solicitud'] == 'autoevaluacionDirector'){   
+                $periodo = ($_POST['periodo']);             
+                $this->controllerDirector->obtenerAutoevaluacionDirector($periodo);
+            }
+            elseif($_POST['solicitud'] == 'autoevaluacionesProfesores'){
+                $periodo = ($_POST['periodo']);
+                $this->controllerDirector->listarAutoevaluacionesProfesores($periodo);
+            }
+
+            
+            
             
             
             	
