@@ -111,7 +111,7 @@ if (!isset($_SESSION['director'])){
 
 
                                     <div class="group-material">
-                                        <input type="text" name="descripcion" class="material-control tooltips-general" placeholder="Nuevo criterio" required="" data-toggle="tooltip">
+                                        <input type="text" name="descripcion" class="material-control tooltips-general" placeholder="Nuevo periodo" required="" data-toggle="tooltip">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>Descripcion del periodo</label>
@@ -123,7 +123,7 @@ if (!isset($_SESSION['director'])){
                                         <label>Fecha inicial</label>
                                     </div>
                                     <div class="group-material">
-                                        <input type="date" name="fechaf" class="material-control tooltips-general" placeholder="Nuevo criterio" required="" data-toggle="tooltip">
+                                        <input type="date" name="fechaf" class="material-control tooltips-general"  required="" data-toggle="tooltip">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>Fecha final</label>
