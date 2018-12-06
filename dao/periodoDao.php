@@ -7,6 +7,17 @@ class PeriodoDao {
     }
 
     public function insertar($dto){
+
+
+        if($this->estaSolapada($dto->getFechaI()) and $this->estaSolapada($dto->getFechaF())){
+            echo "<script>";
+            echo "alert('Alguna de las fechas se solapa con un rango existente');";
+            echo "window.location = 'views/director/periodos.php';"; // redirect with javascript, after page loads
+            echo "</script>";
+            
+            return;
+        }
+
         $query = "INSERT INTO periodo (fechaI, fechaF, descripcion) VALUES ('".$dto->getFechaI()."', '".$dto->getFechaF()."', '".$dto->getDescripcion()."')";
         $this->model->conexion();
         $respuesta = $this->model->query($query);
@@ -48,6 +59,38 @@ class PeriodoDao {
             return $period;
         }
         return null;
+    }
+
+    public function actualizar($codigo,$descripcion,$fechaI,$fechaF){
+        $query = "  UPDATE periodo 
+        SET descripcion = '".$descripcion."',
+        fechaF = '".$fechaF."',
+        fechaI = '".$fechaI."'
+        WHERE id = '".$codigo."'";
+
+        
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+
+        if($respuesta){
+            return 0;
+        }
+        return 1;
+    }
+
+    public function estaSolapada($date){
+        $query = "SELECT id FROM periodo WHERE '$date' BETWEEN fechaI AND fechaF" ;
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+
+        error_log("QUERY -->    <".$query.">");
+
+        if(isset($respuesta) && $respuesta->num_rows>0){
+            return true;
+        }
+        return false;
     }
 
 }

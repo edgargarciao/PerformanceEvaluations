@@ -121,7 +121,7 @@ if (!isset($_SESSION['director'])){
                                 <div class="col-xs-12 col-sm-8 col-sm-offset-2">
 
                                     <div class="group-material">
-                                    <input type="hidden" name="t" class="material-control tooltips-general" required="" maxlength="50" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" data-toggle="tooltip">
+                                    <input type="hidden" name="t" class="material-control tooltips-general" required=""  data-toggle="tooltip">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>Escoge el criterio</label>

@@ -111,15 +111,28 @@ class Director{
 
     public function crearPeriodo($fechaI, $fechaF, $descripcion){
 
+        error_log($fechaI >= $fechaF);
+        if($fechaI >= $fechaF){
+            error_log("ENTROOO");            
+            //header('Location: views/director/periodos.php');
+            //echo '<script type="text/javascript"> alert("La fecha inicial no puede ser mayor o igual que la final ")</script>';
+            echo "<script>";
+            echo "alert('La fecha inicial no puede ser mayor o igual que la final');";
+            echo "window.location = 'views/director/periodos.php';"; // redirect with javascript, after page loads
+            echo "</script>";
+            
+            return;                  
+        }
+
         $dto = new PeriodoDto($fechaI, $fechaF, $descripcion);
         $dao = new PeriodoDao();
 
         $respuesta = $dao->insertar($dto);
         if ($respuesta == 0) {
-            header('Location: views/director/addPeriod.php');
-            echo '<script> alert("Creacion Exitosa")</script>';
+            header('Location: views/director/periodos.php');
+            echo '<script type="text/javascript"> alert("Creacion Exitosa")</script>';
         }else {
-            echo '<script> alert("Creacion Fallida")</script>';
+            echo '<script type="text/javascript"> alert("Creacion Fallida")</script>';
         }
     }
 
@@ -264,6 +277,42 @@ class Director{
     public function listarEvaluacionesDocenteDocente($periodo){
         $dao = new DocenteDao();
         echo json_encode($dao->listarEvaluacionesDocenteDocente($periodo));
+    }
+
+    function actualizarPeriodo($codigo,$descripcion,$fechaI,$fechaF){
+        $dao = new PeriodoDao();
+        error_log($fechaI >= $fechaF);
+        if($fechaI >= $fechaF ){
+           
+            echo "<script>";
+            echo "alert('La fecha inicial no puede ser mayor o igual que la final');";
+            echo "window.location = 'views/director/periodos.php';"; // redirect with javascript, after page loads
+            echo "</script>";
+            
+            return;                  
+        }
+
+        if($dao->estaSolapada($fechaI) or $dao->estaSolapada($fechaF)){
+            $responsew = array();
+            $responsew['status'] = 'error';
+            $responsew['message'] = 'Error: contacte al administrador del sistema.';
+            echo json_encode($responsew);
+        }else{
+
+        
+
+            $respuesta = $dao->actualizar($codigo,$descripcion,$fechaI,$fechaF);
+            $response = array();
+            if ( $respuesta == 0 ) {
+                $response['status'] = 'success';
+                $response['message'] = 'PPeriodo actualizado con exito.';            
+            } else {
+                $response['status'] = 'error';
+                $response['message'] = 'Error: contacte al administrador del sistema.';
+            }
+
+            echo json_encode($response);
+        }
     }
 }
 ?>

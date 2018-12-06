@@ -2454,14 +2454,8 @@ if(accion150!=null) {
                     respuesta3 += ' <a class="btn btn-default" data-toggle="modal" data-target="#myModal'+Codigo+'"> ';
                     respuesta3 += 'Editar';
                     respuesta3 += '</a> \n' ;
-                    respuesta3 += '<button id="hab'+Codigo+'" class="btn btn-success '+((json[i].estado == "Activo")?"disabled":"")+' " onclick="habilitarDocente(\''+Codigo+'\')">';
-                    respuesta3 += 'Habilitar';
-                    respuesta3 += '</button>  \n';
-                    respuesta3 += '<button id="deshab'+Codigo+'" class="btn btn-danger '+((json[i].estado == "Inactivo")?"disabled":"")+'" onclick="desHabilitarDocente(\''+Codigo+'\')">';
-                    respuesta3 += 'Deshabilitar';
-                    respuesta3 += '</button>';
                     
-                    t.row.add([Codigo, Descripcion, fechaI, fechaF, respuesta3]).draw(false);
+                    t.row.add([Descripcion, fechaI, fechaF, respuesta3]).draw(false);
                     respuesta2 = "";
                     respuesta3 = "";
                     respuesta = "";
@@ -2526,9 +2520,9 @@ if(accion150!=null) {
 
             var input1 = document.createElement("INPUT");
             input1.setAttribute("class","material-control tooltips-general"); 
-            input1.setAttribute("id","txtnombre"+Codigo); 
+            input1.setAttribute("id","txtdescripcion"+Codigo); 
             input1.setAttribute("type","text"); 
-            input1.setAttribute("name","nombre"); 
+            input1.setAttribute("name","descripcion"); 
             input1.setAttribute("placeholder","Nombre del docente"); 
             input1.setAttribute("data-toggle","tooltip");
             input1.setAttribute("value",Descripcion);
@@ -2548,12 +2542,85 @@ if(accion150!=null) {
             var label2 = document.createElement("LABEL");
             label2.setAttribute("style","text-align: justify;padding-top: 0px;");
             label2.setAttribute("class","login-box-msg");
-            var textolabel2 = document.createTextNode("Nombre del docente");       
+            var textolabel2 = document.createTextNode("Descripcion");       
             label2.appendChild(textolabel2);
 
             div8.appendChild(label2);
 
             div7.appendChild(div8);
+
+            /***********************************
+             * FECHA INiCIAL
+             *******************/
+
+            var div40 = document.createElement("DIV");
+            div40.setAttribute("class","group-material"); 
+
+            var input10 = document.createElement("INPUT");
+            input10.setAttribute("class","material-control tooltips-general"); 
+            input10.setAttribute("id","txtfechai"+Codigo); 
+            input10.setAttribute("type","date"); 
+            input10.setAttribute("name","descripcion"); 
+            input10.setAttribute("data-toggle","tooltip");
+            input10.setAttribute("value",fechaI);
+            
+            div40.appendChild(input10);
+
+            var span10 = document.createElement("SPAN");
+            span10.setAttribute("class","highlight"); 
+
+            div40.appendChild(span10);
+
+            var span200 = document.createElement("SPAN");
+            span200.setAttribute("class","bar"); 
+
+            div40.appendChild(span200);
+
+            var label20 = document.createElement("LABEL");
+            label20.setAttribute("style","text-align: justify;padding-top: 0px;");
+            label20.setAttribute("class","login-box-msg");
+            var textolabel20 = document.createTextNode("Fecha inicial");       
+            label20.appendChild(textolabel20);
+
+            div40.appendChild(label20);
+
+            div7.appendChild(div40);
+
+            /////////////////////////////// FIN ///////////////////
+
+            var div70 = document.createElement("DIV");
+            div70.setAttribute("class","group-material"); 
+
+            var input100 = document.createElement("INPUT");
+            input100.setAttribute("class","material-control tooltips-general"); 
+            input100.setAttribute("id","txtfechaf"+Codigo); 
+            input100.setAttribute("type","date"); 
+            input100.setAttribute("name","descripcion"); 
+            input100.setAttribute("data-toggle","tooltip");
+            input100.setAttribute("value",fechaF);
+            
+            div70.appendChild(input100);
+
+            var span1000 = document.createElement("SPAN");
+            span1000.setAttribute("class","highlight"); 
+
+            div70.appendChild(span1000);
+
+            var span2000 = document.createElement("SPAN");
+            span2000.setAttribute("class","bar"); 
+
+            div70.appendChild(span2000);
+
+            var label200 = document.createElement("LABEL");
+            label200.setAttribute("style","text-align: justify;padding-top: 0px;");
+            label200.setAttribute("class","login-box-msg");
+            var textolabel200 = document.createTextNode("Fecha final");       
+            label200.appendChild(textolabel200);
+
+            div70.appendChild(label200);
+
+            div7.appendChild(div70);
+
 
             var p2 = document.createElement("P");
             p2.setAttribute("class","text-center");
@@ -2563,7 +2630,7 @@ if(accion150!=null) {
             //button1.setAttribute("type","submit");
             
 
-            button1.setAttribute("onclick","actualizarDocente(\""+json[i].id+"\")");
+            button1.setAttribute("onclick","actualizarPeriodo(\""+json[i].id+"\")");
 
             var i1 = document.createElement("i");
             i1.setAttribute("class","zmdi zmdi-floppy");
@@ -2612,4 +2679,26 @@ if(accion150!=null) {
 
     modifyTable('dataTables-example');
 
+}
+
+function actualizarPeriodo(idPeriodo){
+    var descripcion = document.getElementById("txtdescripcion"+idPeriodo).value;
+    var fechaI = document.getElementById("txtfechai"+idPeriodo).value;
+    var fechaF = document.getElementById("txtfechaf"+idPeriodo).value;
+    
+    $.ajax({
+        url:"../../include.php",
+        data:{solicitud:'updatePeriodo', codigo: idPeriodo, descripcion:descripcion, fechai: fechaI,fechaf:fechaF },
+        type:"post",
+        dataType:"json",
+        success:function(data){
+
+            location.reload();
+        },
+        error: function(xhr, status, error) {            
+            var err = eval("(" + xhr.responseText + ")");
+            alert(xhr.responseText);
+
+        }      
+    });
 }

@@ -363,12 +363,27 @@ class Router
             }
 
             elseif($_POST['solicitud'] == 'periodolist'){   
-                $periodo = ($_POST['periodo']);             
+              
                 $this->controllerDirector->listarPeriodo();
             }
-            
+            elseif($_POST['solicitud'] == 'registryPeriodo'){   
 
-            
+                $descripcion = $_POST['descripcion'];
+                $fechaI = $_POST['fechai']; 
+                $fechaF = $_POST['fechaf'];
+                $this->controllerDirector->crearPeriodo($fechaI,$fechaF,$descripcion);
+            }
+
+            elseif ($_POST['solicitud'] == 'updatePeriodo'){   
+                $descripcion = $_POST['descripcion'];
+                $fechaI = $_POST['fechai']; 
+                $fechaF = $_POST['fechaf'];
+                $codigo = $_POST['codigo'];
+
+                $this->controllerDirector->actualizarPeriodo($codigo,$descripcion,$fechaI,$fechaF);
+            }
+
+
             else {
                 echo '<script> alert("No encontro la solicitud")</script>';
             }
