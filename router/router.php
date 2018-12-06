@@ -429,6 +429,11 @@ class Router
                 $this->controllerDirector->pdfEvaluacionesProfesorProfesor($periodo);
             }
 
+            elseif ($_POST['solicitud'] == 'generate_pdf_rap'){   
+                $periodo = ($_POST['per']);
+                $this->controllerDirector->pdfEvaluacionesAutoevaluacionesProfesores($periodo);
+            }
+
             
             else {
                 echo '<script> alert("No encontro la solicitud")</script>';

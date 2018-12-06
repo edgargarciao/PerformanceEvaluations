@@ -512,6 +512,63 @@ class DocenteDao {
         error_log("LLEgo 4444");
         $pdf->Output();
     }
+
+
+
+    
+
+    public function pdfEvaluacionesAutoevaluacionesProfesores($periodo){
+        error_log("LLEgo 111");
+        $cod = "";
+        if(isset($_SESSION['director'])){
+            $cod = $_SESSION['director'];
+        }elseif(isset($_SESSION['docente'])){
+            $cod = $_SESSION['docente'];
+        }
+
+        $query = "  SELECT docente.codigo, persona.nombres, evaluacion.resultado 
+                    FROM persona, docente, usuario, evaluacion 
+                    WHERE persona.dni = docente.id_persona 
+                    AND usuario.usuario = docente.codigo  
+                    AND evaluacion.profesor_desde = docente.codigo
+                    AND evaluacion.id_tipo_evaluacion = 3
+                    AND evaluacion.id_periodo = $periodo";
+                    //group by docente.codigo";
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        $array = array();
+        error_log("LLEgo 22222 -->  <".$query.">");
+        $pdf = new PDF();
+        //header
+        $pdf->AddPage();
+        //foter page
+        $pdf->AliasNbPages();
+        $pdf->SetFont('Arial','B',12);
+       
+        $pdf->Cell(40,12,"Codigo",1);
+        $pdf->Cell(40,12,"nombres",1);
+        $pdf->Cell(40,12,"resultado",1);
+        
+       
+        error_log("LLEgo 3333");
+
+        if(isset($respuesta) && $respuesta->num_rows>0){
+        while($row = mysqli_fetch_array($respuesta)){
+
+            error_log("LLEgo assasasasasasas");
+                $pdf->Ln();
+                    error_log("COOOODEEE --> ".$row['codigo']);
+                    $pdf->Cell(40,12,$row['codigo'],1);
+                    $pdf->Cell(40,12,$row['nombres'],1);
+                    $pdf->Cell(40,12,$row['resultado'],1);
+                
+            }
+        }
+
+        error_log("LLEgo 4444");
+        $pdf->Output();
+    }
 }
 ?>
 

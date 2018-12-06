@@ -2441,6 +2441,8 @@ if(accion778!=null) {
 
 function cambiarResultadosAutoevaluacionesProfesores(idPeriodo){
 
+    document.getElementById("per").value = idPeriodo;
+
     $.ajax({
         url: "../../include.php",
         data: {solicitud: 'autoevaluacionesProfesores', periodo:idPeriodo},

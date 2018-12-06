@@ -329,5 +329,14 @@ class Director{
         $dao = new DocenteDao();
         $dao->pdfEvaluacionesProfesorProfesor($periodo);
     }
+
+    public function pdfEvaluacionesAutoevaluacionesProfesores($periodo){
+        $dao = new DocenteDao();
+        $dao->pdfEvaluacionesAutoevaluacionesProfesores($periodo);
+    }
+
+
+
+    
 }
 ?>
