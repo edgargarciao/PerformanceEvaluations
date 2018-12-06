@@ -20,7 +20,7 @@ class PersonaDao{
     }
 
     public function actualizar($dni, $celular, $direccion,$apellidos,$imagename,$imagetmp){
-        $query = "UPDATE persona SET celular = '".$celular."', direccion = '".$direccion."'      , nomimg = '".$imagename."' , foto = '".$imagetmp."'       WHERE dni = (SELECT dni FROM (SELECT persona.dni FROM persona, docente WHERE docente.codigo = '".$dni."' AND persona.dni = docente.id_persona) AS alias_persona)";
+        $query = "UPDATE persona SET celular = '".$celular."', direccion = '".$direccion."', apellidos = '".$apellidos."', nomimg = '".$imagename."' , foto = '".$imagetmp."'       WHERE dni = (SELECT dni FROM (SELECT persona.dni FROM persona, docente WHERE docente.codigo = '".$dni."' AND persona.dni = docente.id_persona) AS alias_persona)";
         $this->model->conexion();
         $respuesta = $this->model->query($query);
         $this->model->closeConexion();
