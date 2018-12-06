@@ -2447,7 +2447,7 @@ if(accion150!=null) {
                    
                     var Codigo = json[i].id;
                     var Descripcion = json[i].descripcion;
-                    var fechaI = json[i].descripcion;
+                    var fechaI = json[i].fechaI;
                     var fechaF =  json[i].fechaF;
 
 
