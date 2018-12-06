@@ -283,7 +283,7 @@ class Director{
         $dao = new PeriodoDao();
         error_log($fechaI >= $fechaF);
         if($fechaI >= $fechaF ){
-           
+            error_log("AQUIIII 222222");
             echo "<script>";
             echo "alert('La fecha inicial no puede ser mayor o igual que la final');";
             echo "window.location = 'views/director/periodos.php';"; // redirect with javascript, after page loads
@@ -291,7 +291,6 @@ class Director{
             
             return;                  
         }
-
         if($dao->estaSolapada($fechaI) or $dao->estaSolapada($fechaF)){
             $responsew = array();
             $responsew['status'] = 'error';

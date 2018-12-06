@@ -80,7 +80,8 @@ class PeriodoDao {
     }
 
     public function estaSolapada($date){
-        $query = "SELECT id FROM periodo WHERE '$date' >= fechaI AND  fechaF >='$date'" ;
+        $query = "SELECT id FROM periodo WHERE '$date' > fechaI AND  fechaF > '$date'" ;
+                  
         $this->model->conexion();
         $respuesta = $this->model->query($query);
         $this->model->closeConexion();
