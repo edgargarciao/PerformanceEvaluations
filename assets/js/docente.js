@@ -570,21 +570,23 @@ function cambiarResultadosDirectorDocente(idPeriodo){
         url: "../../include.php",
         data: {solicitud: 'evaluacionesDocenteDocente', periodo:idPeriodo},
         type: "post",
-        async:false,
+        
         success: function (response) {
             var json = JSON.parse(response);
 
             if (json.length != 0) {
                 var t = $('#dataTables-example').DataTable({ "bDestroy": true});
-                
+                t.clear();
                 for (var i = 0; i < json.length; i++) {
+                    var Codigo = json[i].codigo;
                     var Nombre = json[i].nombres + " " + ((json[i].apellidos == "null")?"":json[i].apellidos);
                     var resultado = json[i].resultado;
-                    t.row.add([Nombre, resultado]).draw(false);
+                    t.row.add([Codigo, Nombre, resultado]).draw(false);
                 }
             }else{
                 var t = $('#dataTables-example').DataTable({ "bDestroy": true});
                 
+                t.clear().remove().draw();
             }
         }
     });

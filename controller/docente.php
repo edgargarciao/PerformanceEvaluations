@@ -115,15 +115,18 @@ class Docente{
 
     }
 
-    public function actualizarDatosDocente($nombre,$codigo){
+    public function actualizarDatosDocente($nombre,$codigo,$rol){
         $dao = new DocenteDao();
-        $respuesta = $dao->actualizarDatosDocente($codigo, $nombre);
+        $respuesta = $dao->actualizarDatosDocente($codigo, $nombre, $rol);
 
         $response = array();
 
         if ( $respuesta == 0 ) {
             $response['status'] = 'success';
             $response['message'] = 'Docente actualizado con exito.';            
+        }elseif($respuesta == 2) {
+            $response['status'] = 'error';
+            $response['message'] = 'Error: El sistema no puede quedarse sin rol.';
         } else {
             $response['status'] = 'error';
             $response['message'] = 'Error: contacte al administrador del sistema.';

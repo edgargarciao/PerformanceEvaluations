@@ -38,6 +38,12 @@ class Criterio{
         echo json_encode($dao->consultarPreguntasDirector());
     }
 
+    public function consultarRoles(){
+        $dao = new CriterioDao();
+        echo json_encode($dao->consultarRoles());
+    }
+    
+
     public function consultarPreguntasDocente(){
         $dao = new CriterioDao();
         echo json_encode($dao->consultarPreguntasDocente());

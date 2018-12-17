@@ -41,11 +41,13 @@ class DocenteDao {
     }
 
     public function listar(){
-        $query = "SELECT docente.codigo, persona.nombres, persona.apellidos, persona.celular, persona.direccion, persona.correo, docente.id_departamento, usuario.estado 
-                  FROM persona 
-                  INNER JOIN docente ON persona.dni = docente.id_persona 
-                  INNER JOIN usuario ON usuario.usuario = docente.codigo                   
-                  ORDER BY persona.nombres";
+        $query = "  SELECT docente.codigo, persona.nombres, persona.apellidos, persona.celular, persona.direccion, persona.correo, docente.id_departamento, usuario.estado, tipodocente.nombre rol, departamento.nombre dep
+                    FROM persona 
+                    INNER JOIN docente ON persona.dni = docente.id_persona 
+                    INNER JOIN usuario ON usuario.usuario = docente.codigo                   
+                    INNER JOIN tipodocente ON tipodocente.id = docente.id_tipo_docente
+                    INNER JOIN departamento ON departamento.id = docente.id_departamento
+                    ORDER BY persona.nombres";
         $this->model->conexion();
         $respuesta = $this->model->query($query);
         $this->model->closeConexion();
@@ -188,7 +190,13 @@ class DocenteDao {
         return 1;
     }
 
-    public function actualizarDatosDocente($codigo, $nombre){
+    public function actualizarDatosDocente($codigo, $nombre, $rol){
+        $val = $this->updateRol($codigo, $rol);
+        $val2 = $this->updateUser($codigo, $rol);
+        if($val == 2 OR $val2 == 2){
+            return $val;
+        }
+
         $query = "  UPDATE persona 
                     SET nombres = '".$nombre."' 
                     WHERE persona.dni = (
@@ -207,6 +215,35 @@ class DocenteDao {
         return 1;
     }
 
+    public function updateRol($codigo, $rol){
+        $query = "  UPDATE docente 
+                    SET id_tipo_docente = '".$rol."' 
+                    WHERE codigo = '".$codigo."'";
+
+        error_log("sql -->   <".$query.">");
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        if($respuesta){
+            return 0;
+        }
+        return 2;
+    }
+
+    public function updateUser($codigo, $rol){
+        $query = "  UPDATE usuario 
+                    SET tipousuario = $rol 
+                    WHERE usuario = '".$codigo."'";
+
+        error_log("sql -->   <".$query.">");
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        if($respuesta){
+            return 0;
+        }
+        return 2;
+    }
     public function listarEvaluacionesDirectorProfesor($periodo){
 
         $cod = "";

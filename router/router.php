@@ -231,9 +231,10 @@ class Router
 
             elseif ($_POST['solicitud'] == 'updateTeacherName'){
                 $nombre = $_POST['nombre'];
-                $codigo = $_POST['codigo'];            
+                $codigo = $_POST['codigo'];   
+                $rol = $_POST['rol'];            
 
-                $this->controllerDocente->actualizarDatosDocente($nombre,$codigo);
+                $this->controllerDocente->actualizarDatosDocente($nombre,$codigo, $rol);
             }
 
             elseif ($_POST['solicitud'] == 'changeStateAsignatura'){
@@ -281,6 +282,10 @@ class Router
             elseif ($_POST['solicitud'] == 'consultarPreguntasDirector'){        
                 $this->controllerCriterio->consultarPreguntasDirector();
             }
+            elseif ($_POST['solicitud'] == 'consultarRoles'){        
+                $this->controllerCriterio->consultarRoles();
+            }
+            
             elseif ($_POST['solicitud'] == 'listPreguntasDirector'){           
                 $this->controllerCriterio->listarPreguntasDirector();
             }

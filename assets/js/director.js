@@ -1,7 +1,8 @@
 
 
 var preguntasDirector = [];
-var preguntasDocente = []; 
+var preguntasDocente = [];
+var roles = [];
 
 var codigoDocente;
 
@@ -119,6 +120,7 @@ if(accion4!=null){
 
 var accion5 = document.querySelector("#teacher_list");
 if(accion5!=null) {
+    cargarRoles();
     $.ajax({
         url: "../../include.php",
         data: {solicitud: 'listDocentes'},
@@ -137,10 +139,12 @@ if(accion5!=null) {
                     var Codigo = json[i].codigo;
                     var Nombre = json[i].nombres;
                     var Apellido = (json[i].apellidos == "null")?"":json[i].apellidos;                    
-                    var Celular =  (json[i].celular == "null")?"":json[i].apellidos;
-                    var Direccion = (json[i].direccion == "null")?"":json[i].apellidos;
+                    var Celular =  (json[i].celular == "null")?"":json[i].celular;
+                    var Direccion = (json[i].direccion == "null")?"":json[i].direccion;
                     var Correo = json[i].correo;
                     var Departamento = 'Ingenieria de Sistemas';
+                    var ROL = json[i].rol;
+                    var DEP = json[i].dep;
 
 
                     respuesta3 += ' <a class="btn btn-default" data-toggle="modal" data-target="#myModal'+Codigo+'"> ';
@@ -153,7 +157,7 @@ if(accion5!=null) {
                     respuesta3 += 'Deshabilitar';
                     respuesta3 += '</button>';
                     
-                    t.row.add([Codigo, Nombre, Apellido, Celular, Direccion, Correo, Departamento, respuesta3]).draw(false);
+                    t.row.add([Codigo, Nombre, Apellido, Celular, Direccion, Correo, DEP, ROL, respuesta3]).draw(false);
                     respuesta2 = "";
                     respuesta3 = "";
                     respuesta = "";
@@ -245,7 +249,36 @@ if(accion5!=null) {
 
             div8.appendChild(label2);
 
+
+
             div7.appendChild(div8);
+
+
+            var div50 = document.createElement("DIV");
+            div50.setAttribute("class","group-material"); 
+
+            var select = document.createElement("SELECT");
+            select.setAttribute("class","form-control"); 
+            select.setAttribute("name","txtRol"); 
+            select.setAttribute("id","txtRol"+Codigo); 
+
+
+            var arrayLength = roles.length;
+            for (var j = 0; j < arrayLength; j++) {
+ 
+                var option = document.createElement("OPTION");
+                option.setAttribute("value",roles[j].codigo); 
+    
+                var textooption = document.createTextNode(roles[j].rol);       
+                option.appendChild(textooption);
+    
+                select.appendChild(option);
+            }
+
+            div50.appendChild(select);
+
+            div7.appendChild(div50);
+
 
             var p2 = document.createElement("P");
             p2.setAttribute("class","text-center");
@@ -292,6 +325,8 @@ if(accion5!=null) {
 
 
             modals.appendChild(div1);
+
+            document.getElementById("txtRol"+Codigo).selectedIndex = $("#txtRol"+ Codigo+" > option:contains("+ROL+")").index() ;             
 
         }
                 
@@ -382,9 +417,12 @@ function actualizarDocente(codigo){
     var nombre = document.getElementById("txtnombre"+codigo).value;
     console.log("nombre --> "+nombre);
 
+    var e = document.getElementById("txtRol"+codigo);
+    var rol = e.options[e.selectedIndex].value;    
+
     $.ajax({
         url:"../../include.php",
-        data:{solicitud:'updateTeacherName', nombre: nombre, codigo: codigo},
+        data:{solicitud:'updateTeacherName', nombre: nombre, codigo: codigo, rol: rol},
         type:"post",
         dataType:"json",
         success:function(data){
@@ -398,6 +436,43 @@ function actualizarDocente(codigo){
     });
 }
 
+function cargarRoles(){
+    $.ajax({
+        url:"../../include.php",
+        data:{solicitud:'consultarRoles'},
+        type:"post",
+        dataType:"json",
+ 
+        success:function(response){
+        
+            var json = JSON.parse(JSON.stringify(response));
+            if (json.length != 0) {
+                for (var i = 0; i < json.length; i++) {
+                    var rol = json[i].nombre;
+                    var Codigo = json[i].id;
+                    
+
+                    var rolObject = {codigo:Codigo, rol:rol};
+                    roles.push(rolObject);
+
+
+                    //var preguntasDocente = [];
+
+                }
+            }
+        },
+        error: function(xhr, status, error) {            
+            var err = eval("(" + xhr.responseText + ")");
+            alert(xhr.responseText);
+
+        }      
+    });
+}
+
+
+/***********************************************
+ * MATERIAS
+ ***********************************************/
 var accion6 = document.querySelector("#subject_list");
 if(accion6!=null) {
     
@@ -412,8 +487,9 @@ if(accion6!=null) {
             var respuesta2 = "";
             var respuesta3 = "";
             if (json.length != 0) {
-                var t = $('#dataTables-example').DataTable();
-                t.clear().draw();
+                var t = $('#dataTables-example').DataTable({ "bDestroy": true});
+                //t.clear().draw();
+                
                 for (var i = 0; i < json.length; i++) {
                     var Nombre = json[i].nombre;
                     var Codigo = json[i].codigo;

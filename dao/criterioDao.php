@@ -98,6 +98,22 @@ class CriterioDao {
         return ($array);
     }
 
+    public function consultarRoles(){
+        $query = "  SELECT *
+                    from tipodocente";
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        $array = array();
+
+        if(isset($respuesta) && $respuesta->num_rows>0){
+            while($row = mysqli_fetch_array($respuesta)){
+                array_unshift($array, $row);
+            }
+        }
+        return ($array);
+    }
+
     public function consultarPreguntasDocente(){
         $query = "  SELECT      criterio.id, nombreCriterio
                     FROM        criterio

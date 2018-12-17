@@ -10,7 +10,7 @@
 
             try {
                 $this->pdo = mysqli_connect($host, $user, $password, $dataBase);
-               // $mysqli->set_charset("utf8");
+                $this->pdo->query("SET CHARACTER SET utf8;");
             }
 
             catch (Exception $exc) {

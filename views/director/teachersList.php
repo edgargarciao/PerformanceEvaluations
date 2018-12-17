@@ -72,6 +72,7 @@ if (!isset($_SESSION['director'])){
                                                         <th class="text-center">Direccion</th>
                                                         <th class="text-center">Correo</th>                                                        
                                                         <th class="text-center">Departamento</th>
+                                                        <th class="text-center">ROL</th>
                                                         <th class="text-center">Acción</th>
                                                     </tr>
                                                     </thead>
@@ -85,6 +86,7 @@ if (!isset($_SESSION['director'])){
                                                         <td class="text-center" id="nombre">Correo</td>
                                                         
                                                         <td class="text-center" id="departamento">departamento</td>
+                                                        <td class="text-center" id="departamento">ROL</td>
                                                         <td>
                                                          <a class="btn btn-default" data-toggle="modal" data-target="#myModal2">Editar</a>  
                                                          <button class="btn btn-danger">Deshabilitar</button>

@@ -71,18 +71,7 @@ if (!isset($_SESSION['director'])){
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <td class="text-center" id="nombre">nombre</td>
-                                                        <td class="text-center" id="codigo">codigo</td>
-                                                        <td>  
-                                                            <a href="#" class="btn btn-default" data-toggle="modal" data-target=".myModal">Editar
-                                                            </a>  
-                                                            <button class="btn btn-danger">Deshabilitar
-                                                            </button>
-                                                            <button class="btn btn-success">Habilitar
-                                                            </button>
-                                                        </td>
-                                                    </tr>
+
                                                     </tbody>
                                                 </table>
                                             </div>
