@@ -129,7 +129,7 @@ class Docente{
             $response['message'] = 'Error: El sistema no puede quedarse sin rol.';
         } else {
             $response['status'] = 'error';
-            $response['message'] = 'Error: contacte al administrador del sistema.';
+            $response['message'] = 'MENSAJE: contacte al administrador del sistema.';
         }
 
         echo json_encode($response);

@@ -675,7 +675,7 @@ if(accion6!=null) {
             }else{
                 var t = $('#dataTables-example').DataTable();
                 t.clear().draw();
-                alert("Ha ocurrido un error al listar las asignaturas");
+                
             }
         }
     });
@@ -876,7 +876,7 @@ if(accion10!=null) {
             }else{
                 var t = $('#dataTables-example').DataTable();
                 t.clear().draw();
-                alert("Ha ocurrido un error al listar los docentes");
+                
             }
         }
     });
@@ -940,7 +940,7 @@ if(accion13!=null) {
             }else{
                 var t = $('#dataTables-example').DataTable();
                 t.clear().draw();
-                alert("Ha ocurrido un error al listar los docentes");
+               
             }
         }
     });
@@ -1204,7 +1204,7 @@ if(accion50!=null) {
             }else{
                 var t = $('#dataTables-example').DataTable();
                 t.clear().draw();
-                alert("Ha ocurrido un error al listar las asignaturas");
+                
             }
         },
         error: function(xhr, status, error) {            

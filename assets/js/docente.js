@@ -124,7 +124,7 @@ if(accion5!=null) {
             }else{
                 var t = $('#dataTables-example').DataTable();
                 t.clear().draw();
-                alert("Ha ocurrido un error al listar los docentes");
+                
             }
         }
     });
