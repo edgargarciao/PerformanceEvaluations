@@ -19,7 +19,13 @@ class PersonaDao{
         return 1;
     }
 
-    public function actualizar($dni, $celular, $direccion,$apellidos,$imagename,$imagetmp){
+    public function actualizar($codi,$dni, $celular, $direccion,$apellidos,$imagename,$imagetmp){
+        $val = $this->updateRol($codi);
+        $val2 = $this->updateUser($codi);
+        if($val == 2 OR $val2 == 2){
+            return $val;
+        }
+
         $query = "";
 
         if($imagename == ""){
@@ -37,6 +43,53 @@ class PersonaDao{
             return 0;
         }
         return 1;
+    }
+
+    public function updateRol($codigo){
+
+        $cod = "";
+        if(isset($_SESSION['director'])){
+            $cod = $_SESSION['director'];
+        }elseif(isset($_SESSION['docente'])){
+            $cod = $_SESSION['docente'];
+        }
+
+        $query = "  UPDATE docente 
+                    SET codigo = '".$codigo."' 
+                    WHERE codigo = '".$cod."'";
+
+        error_log("sql -->   <".$query.">");
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        if($respuesta){
+            return 0;
+        }
+        return 2;
+    }
+
+    public function updateUser($codigo){
+
+        $cod = "";
+        if(isset($_SESSION['director'])){
+            $cod = $_SESSION['director'];
+        }elseif(isset($_SESSION['docente'])){
+            $cod = $_SESSION['docente'];
+        }
+
+
+        $query = "  UPDATE usuario 
+                    SET usuario = '".$codigo."'
+                    WHERE usuario = '".$cod."'";
+
+        error_log("sql -->   <".$query.">");
+        $this->model->conexion();
+        $respuesta = $this->model->query($query);
+        $this->model->closeConexion();
+        if($respuesta){
+            return 0;
+        }
+        return 2;
     }
 
     public function listar(){

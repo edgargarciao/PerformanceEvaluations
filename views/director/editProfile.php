@@ -63,6 +63,12 @@ if (!isset($_SESSION['director'])){
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
                                         <div class="group-material">
+                                            <input type="text" name="codi" id="codi" class="material-control tooltips-general" required="" maxlength="10" data-toggle="tooltip">
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label>Codigo</label>
+                                        </div>
+                                        <div class="group-material">
                                             <input type="number" name="celular" id="cel" class="material-control tooltips-general" placeholder="Celular" required="" maxlength="10" data-toggle="tooltip">
                                             <span class="highlight"></span>
                                             <span class="bar"></span>

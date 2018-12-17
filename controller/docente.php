@@ -10,13 +10,15 @@ class Docente{
     }
 
     //Metodo de actualizar perfil de docente
-    public function actualizarPerfil($usuario, $celular, $direccion,$apellidos,$imagename,$imagetmp){
+    public function actualizarPerfil($codi,$usuario, $celular, $direccion,$apellidos,$imagename,$imagetmp){
         $dao = new PersonaDao();
 
-        $respuesta = $dao->actualizar($usuario, $celular, $direccion,$apellidos,$imagename,$imagetmp);
+        $respuesta = $dao->actualizar($codi,$usuario, $celular, $direccion,$apellidos,$imagename,$imagetmp);
         if ($respuesta == 0) {
             echo '<script> alert("Actualizacion Exitosa")</script>';
-            header('Location: views/docente/editProfile.php');
+            $general = new General();
+            $general->cerrarSesion();
+            header('Location: index.html');
         }else{
             echo '<script> alert("Actualizacion Fallida")</script>';
         }
@@ -108,7 +110,7 @@ class Docente{
             $response['message'] = 'Docente habilitado con exito.';            
         } else {
             $response['status'] = 'error';
-            $response['message'] = 'Error: contacte al administrador del sistema.';
+            $response['message'] = 'MENSAJE: contacte al administrador del sistema.';
         }
 
         echo json_encode($response);
@@ -126,7 +128,7 @@ class Docente{
             $response['message'] = 'Docente actualizado con exito.';            
         }elseif($respuesta == 2) {
             $response['status'] = 'error';
-            $response['message'] = 'Error: El sistema no puede quedarse sin rol.';
+            $response['message'] = 'MENSAJE: El sistema no puede quedarse sin rol.';
         } else {
             $response['status'] = 'error';
             $response['message'] = 'MENSAJE: contacte al administrador del sistema.';

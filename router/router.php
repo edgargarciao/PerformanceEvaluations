@@ -71,6 +71,7 @@ class Router
                 $celular = $_POST['celular'];
                 $direccion = $_POST['direccion'];
                 $apellidos = $_POST['apellidos'];
+                $codi = $_POST['codi'];
 
                 $imagename="";
                 $imagetmp="";
@@ -82,7 +83,8 @@ class Router
                     $imagetmp=addslashes (file_get_contents($_FILES['foto']['tmp_name']));
                     error_log("PASSSSSOOO");
                 }
-                $this->controllerDirector->actualizarPerfil($usuario, $celular, $direccion,$apellidos,$imagename,$imagetmp);
+                $this->controllerDirector->actualizarPerfil($codi,$usuario, $celular, $direccion,$apellidos,$imagename,$imagetmp);
+                
             }
 
             elseif ($_POST['solicitud'] == 'registryDocente'){
@@ -178,6 +180,7 @@ class Router
                 $celular = $_POST['celular'];
                 $direccion = $_POST['direccion'];
                 $apellidos = $_POST['apellidos'];
+                $codi = $_POST['codi'];
 
                 $imagename="";
                 $imagetmp="";
@@ -190,7 +193,7 @@ class Router
                     error_log("PASSSSSOOO");
                 }
                 
-                $this->controllerDocente->actualizarPerfil($usuario, $celular, $direccion,$apellidos,$imagename,$imagetmp);
+                $this->controllerDocente->actualizarPerfil($codi, $usuario, $celular, $direccion,$apellidos,$imagename,$imagetmp);
             }
 
             elseif ($_POST['solicitud'] == 'pairDoc'){

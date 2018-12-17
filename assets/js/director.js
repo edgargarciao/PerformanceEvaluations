@@ -113,6 +113,8 @@ if(accion4!=null){
             document.querySelector("#cel").value = data.persona.celular;
             document.querySelector("#dir").value = data.persona.direccion;
             document.querySelector("#ape").value = data.persona.apellidos;
+            document.querySelector("#codi").value = data.persona.codigo;
+
             $('#imgD').attr('src',"data:image/jpeg;base64,"+ data.persona.foto);
         }
     });

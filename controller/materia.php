@@ -16,7 +16,7 @@ class Materia{
             $response['message'] = 'Docente habilitado con exito.';            
         } else {
             $response['status'] = 'error';
-            $response['message'] = 'Error: contacte al administrador del sistema.';
+            $response['message'] = 'MENSAJE: contacte al administrador del sistema.';
         }
 
         echo json_encode($response);
@@ -34,7 +34,7 @@ class Materia{
             $response['message'] = 'Docente actualizado con exito.';            
         } else {
             $response['status'] = 'error';
-            $response['message'] = 'Error: contacte al administrador del sistema.';
+            $response['message'] = 'MENSAJE: contacte al administrador del sistema.';
         }
 
         echo json_encode($response);

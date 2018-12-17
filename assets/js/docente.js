@@ -57,6 +57,8 @@ if(accion3!=null){
         type:"post",
         dataType:"json",
         success:function(data){
+            console.log(data.persona.codigo);
+            document.querySelector("#codi").value = data.persona.codigo;
             document.querySelector("#cel").value = ((data.persona.celular == "null") ? "" :data.persona.celular );
             document.querySelector("#dir").value = ((data.persona.direccion == "null") ? "" :data.persona.direccion );
             document.querySelector("#ape").value = data.persona.apellidos;
