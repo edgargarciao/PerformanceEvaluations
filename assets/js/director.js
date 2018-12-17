@@ -442,7 +442,7 @@ function cargarRoles(){
         data:{solicitud:'consultarRoles'},
         type:"post",
         dataType:"json",
- 
+        async:false,
         success:function(response){
         
             var json = JSON.parse(JSON.stringify(response));
@@ -455,8 +455,6 @@ function cargarRoles(){
                     var rolObject = {codigo:Codigo, rol:rol};
                     roles.push(rolObject);
 
-
-                    //var preguntasDocente = [];
 
                 }
             }
