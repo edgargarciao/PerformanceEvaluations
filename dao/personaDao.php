@@ -31,10 +31,10 @@ class PersonaDao{
             error_log("PASSSSSOOO    CONNN");
             $query = "UPDATE persona SET celular = '".$celular."', direccion = '".$direccion."', apellidos = '".$apellidos."', nomimg = '".$imagename."' , foto = '".$imagetmp."'       WHERE dni = (SELECT dni FROM (SELECT persona.dni FROM persona, docente WHERE docente.codigo = '".$dni."' AND persona.dni = docente.id_persona) AS alias_persona)";            
         }
-        
-        $this->model->conexion();
-        $respuesta = $this->model->query($query);
-        $this->model->closeConexion();
+        error_log("sql -->   <".$query.">");
+        $this->model->conexion2();
+        $respuesta = $this->model->query2($query);
+        $this->model->closeConexion2();
 
 
         $cod = "";

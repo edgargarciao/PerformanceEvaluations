@@ -15,10 +15,19 @@ class Docente{
 
         $respuesta = $dao->actualizar($codi,$usuario, $celular, $direccion,$apellidos,$imagename,$imagetmp);
         if ($respuesta == 0) {
-            echo '<script> alert("Actualizacion Exitosa")</script>';
-            $general = new General();
-            $general->cerrarSesion();
-            header('Location: index.html');
+            $cod = "";
+            if(isset($_SESSION['docente'])){
+                $cod = $_SESSION['docente'];
+            }
+            if($cod != $codi){
+                echo '<script> alert("Actualizacion Exitosa")</script>';
+                $general = new General();
+                $general->cerrarSesion();
+                header('Location: index.html');
+            }else{
+                header('Location: views/docente/editProfile.php');
+                echo '<script> alert("Registro Exitoso")</script>';
+            }
         }else{
             echo '<script> alert("Actualizacion Fallida")</script>';
         }
